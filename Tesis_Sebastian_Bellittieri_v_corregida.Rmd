@@ -616,7 +616,7 @@ En el presente trabajo de tesis de Maestría en Estadística Aplicada se aplican
 
 Se estudia además la volatilidad de la serie de retornos logarítmicos del precio de ETH/USD y se generan pronósticos fuera de la muestra a un día con una muestra de tamaño 300 utilizando los modelos autorregresivos de varianza condicional heterocedástica (ARCH), generalizados autorregresivos de varianza condicional heterocedástica (GARCH) y exponenciales generalizados autorregresivos de varianza condicional heterocedástica (EGARCH). Para la comparación de modelos se utilizan las métricas RMSE, MAE y MAPE, el test basado en regresión de Mincer-Zarnowitz y el test de Diebold-Mariano. Se seleccionan los modelos considerando distintas distribuciones de densidad condicional para las innovaciones en los modelos propuestos. Se presenta leptocurtosis en los residuos de los modelos. Los resultados para comparación de modelos de volatilidad presentan la dificultad de la función de aproximación de la volatilidad real y las métricas de error deben ser consideradas con cautela. No se detectan resultados significativos en la comparación por test de Diebold-Mariano, tampoco en el test de regresión de Mincer-Zarnowitz. Los criterios de información indican el modelo ARCH(4) para la volatilidad de la serie mientras que en base a las métricas se selecciona el GARCH(1,1).
 
-**Palabras clave**: Ether, series de tiempo, pronósticos. 
+**Palabras clave**: Ether, series de tiempo, pronósticos, precio de cierre, volatilidad. 
 
 \newpage
 
@@ -627,7 +627,7 @@ In the present Master's in Applied Statistics thesis, time series forecasting me
 
 The volatility of the series of logarithmic returns of the ETH/USD price is also studied and one-day out-of-sample forecasts are generated with a sample of size 300 using the autoregresive conditional heteroskedasticity (ARCH),  generalized autoregressive conditional heteroskedasticity (GARCH) and exponential  generalized autoregressive conditional heteroskedasticity (EGARCH). The RMSE, MAE and MAPE metrics, the Mincer-Zarnowitz regression-based test, and the Diebold-Mariano test are used to compare models. The models are selected considering different distributions of conditional density for the innovations in the proposed models. Leptokurtosis is present in the residuals of the models. The results for the comparison of volatility models present the difficulty of the approximation function of the real volatility and the error metrics must be considered with caution. No significant results were detected in the comparison by the Diebold-Mariano test, nor in the Mincer-Zarnowitz regression test. The information criteria indicate the ARCH(4) model for the volatility of the series, while the GARCH(1,1) model is selected based on the metrics.
 
-**Key words**: Ether, time series, forecasts.
+**Key words**: Ether, time series, forecasts, closing price, volatility.
 
 \newpage
 
@@ -671,18 +671,17 @@ A mi Director de tesis y Co Directora por la guía a través del proceso de conf
 
 
 
-# 1-Introducción 
+# Capítulo 1 - Introducción 
 
-En la actualidad se debate con frecuencia sobre quién es el sostén de confianza de las monedas fiduciarias dando como respuesta a los roles gubernamentales y de los bancos centrales de los diferentes países. En la época del respaldo monetario en oro era el sistema Bretton Woods a escala global, en la actualidad varias instituciones influencian la dinámica del competitivo mundo financiero como el Fondo Monetario Internacional, el Banco Mundial, el Banco Central Europeo, El Banco Asiático de inversión en Infraestructura y otros dependiendo en la región y el punto de vista (Pichl et al., 2020). Sobre la confianza en el dinero fiduciario (Desai y Said, 2004) mencionan a las crisis cambiarias de Checoslovaquia de 1953 y la de Rusia en 1993 como generadoras de destrucción  del valor de los ahorros de la población general, con una combinación de restricciones cambiarias y alta tasa de inflación. En igual situación la economía argentina con las sucesivas crisis cambiarias y pérdida de confianza en la moneda nacional (Padinger, 2022).
+En la actualidad se debate con frecuencia sobre quién es el sostén de confianza de las monedas fiduciarias dando como respuesta a los roles gubernamentales y de los bancos centrales de los diferentes países. En la época del respaldo monetario en oro era el sistema Bretton Woods a escala global, en la actualidad varias instituciones influencian la dinámica del competitivo mundo financiero como el Fondo Monetario Internacional, el Banco Mundial, el Banco Central Europeo, El Banco Asiático de inversión en Infraestructura y otros dependiendo en la región y el punto de vista (Pichl et al., 2020). 
+El dinero fiduciario es la moneda que utilizada en las transacciones comerciales gracias a la confianza de pago de la entidad emisora ya que, al carecer valor intrínseco, el emisor debe liquidarla con los bienes de valor que la respaldan (R.A.E., 2024). Sobre la confianza en el dinero fiduciario (Desai y Said, 2004) mencionan a las crisis cambiarias de Checoslovaquia de 1953 y la de Rusia en 1993 como generadoras de destrucción  del valor de los ahorros de la población general, con una combinación de restricciones cambiarias y alta tasa de inflación. En igual situación la economía argentina con las sucesivas crisis cambiarias y pérdida de confianza en la moneda nacional (Padinger, 2022).
 
-
-El dinero fiduciario es la moneda que utilizada en las transacciones comerciales gracias a la confianza de pago de la entidad emisora ya que, al carecer valor intrínseco, el emisor debe liquidarla con los bienes de valor que la respaldan (R.A.E., 2024).
 Cuando un sistema de dinero fiduciario se vuelve completamente digital, cosa que no ha ocurrido aún, la institución central gana la capacidad de intervenir a cada individuo del sistema financiero y la información sobre su comportamiento debido al flujo de información que las transacciones involucran. A medida que se sofistican los sistemas digitales de finanzas, los riesgos asociados con el mal funcionamiento de los mismos aumentan. "La relación asimétrica de un individuo y la institución financiera puede ser conveniente cuando existe la protección de la privacidad y las medidas de seguridad funcionen correctamente pero puede ser un desastre en casos de ciberataques exitosos” (Pich et al., 2020).
 Una definición de activo digital es “instrumento digital emitido o representado mediante el uso de un registro distribuido o una tecnología similar. Se excluyen las representaciones digitales de monedas fiduciarias” (Fondo Monetario Internacional [FMI], 2022).
 
-En relación al párrafo anterior, la separación conceptual sobre el dinero fiduciario digital y los activos digitales, continuando con los conceptos elementales relacionados con las criptomonedas, FMI define a la cadena de bloques como “un registro distribuido en el que los detalles de las transacciones se guardan en bloques de información. Un bloque nuevo se anexa a una cadena de bloques existente mediante un proceso computarizado que valida las transacciones” (FMI, 2022). Una criptomoneda es un activo digital del sector privado que depende primordialmente de la criptografía y de un registro distribuido (cadena de bloques) o tecnología similar (FMI, 2022).
+Continuando con los conceptos elementales relacionados con las criptomonedas, FMI define a la cadena de bloques como “un registro distribuido en el que los detalles de las transacciones se guardan en bloques de información. Un bloque nuevo se anexa a una cadena de bloques existente mediante un proceso computarizado que valida las transacciones” (FMI, 2022). Una criptomoneda es un activo digital del sector privado que depende primordialmente de la criptografía y de un registro distribuido (cadena de bloques) o tecnología similar (FMI, 2022).
 
-En relación a los pros y contras de las criptomonedas, Pich et al (2020) mencionan el trabajo de Nakamoto (2008), el creador de Bitcoin (en adelante BTC), que resuelve el problema del doble gasto del dinero digital (cómo garantizar que el dinero digital no es gastado varias veces publicando el evento de transacciones de manera encriptada en la cadena de bloques). El incentivo para mantener la integridad de la cadena de bloques es dado por la recompensa al creador de un nuevo bloque con un monto fijo de BTC (proceso de minado) o por comisiones en las transacciones. A medida que más diversificado está el sistema más robusto se vuelve al ataque que intente alterar los registros de la cadena de bloques (Nakamoto, 2008). Las características distintivas de BTC como criptomoneda son la falta de una entidad financiera regulatoria, la cantidad fija de monedas y la disponibilidad de un completo registro de transacciones entre direcciones. Todas las criptomonedas tienen la propiedad de no tener un valor específicamente económico a diferencia del dinero fiduciario, la falta de confianza en el sistema financiero de monedas fiduciarias no necesariamente implica confiar en un activo digital. Las fluctuaciones de precio de los valores de BTC en el tiempo y de otras varias criptomonedas confirman el hecho de que el valor intrínseco de las criptomonedas no está en los bienes y servicios de la economía. Las criptomonedas también enfrentan un problema ambiental debido a la enorme cantidad de energía que requieren para los cálculos que inducen a una gran huella de carbono. Al mes de septiembre de 2020, existen más de 7100 criptomonedas diferentes según la plataforma Coinmarketcap.com. Consultado el 20/09/2020. (https://coinmarketcap.com/)
+En relación a los pros y contras de las criptomonedas, Pich et al (2020) mencionan el trabajo de Nakamoto (2008), el creador de Bitcoin (en adelante BTC), que resuelve el problema del doble gasto del dinero digital (cómo garantizar que el dinero digital no es gastado varias veces publicando el evento de transacciones de manera encriptada en la cadena de bloques). El incentivo para mantener la integridad de la cadena de bloques es dado por la recompensa al creador de un nuevo bloque con un monto fijo de BTC (proceso de minado) o por comisiones en las transacciones. A medida que más diversificado está el sistema más robusto se vuelve al ataque que intente alterar los registros de la cadena de bloques (Nakamoto, 2008). Las características distintivas de BTC como criptomoneda son la falta de una entidad financiera regulatoria, la cantidad fija de monedas y la disponibilidad de un completo registro de transacciones entre direcciones. Todas las criptomonedas tienen la propiedad de no tener un valor específicamente económico a diferencia del dinero fiduciario, la falta de confianza en el sistema financiero de monedas fiduciarias no necesariamente implica confiar en un activo digital. Las fluctuaciones de precio de los valores de BTC en el tiempo y de otras criptomonedas confirman el hecho de que el valor intrínseco de las criptomonedas no está en los bienes y servicios de la economía. Las criptomonedas también enfrentan un problema ambiental debido a la enorme cantidad de energía que requieren para los cálculos que inducen a una gran huella de carbono. Al mes de septiembre de 2020, existen más de 7100 criptomonedas diferentes según la plataforma Coinmarketcap.com. Consultado el 20/09/2020. (https://coinmarketcap.com/)
 
 Ethereum es una plataforma de fuente abierta para contratos inteligentes basada en la plataforma de cadena de bloques. Tiene la ventaja de que puede ser aplicada a lo que se denomina contratos inteligentes como la verificación de votos en elecciones, la verificación de documentos, el combate a la piratería digital. Ethereum corre en aplicaciones que no tienen posibilidades de falta de tiempo, censura, fraude o interferencia de terceras partes. Es una plataforma blockchain con funcionalidad de contratos inteligentes creada en el año 2013 por Vitalik Buterin. Las aplicaciones corren de manera descentralizada entre una red de diferentes computadoras sumando el potencial de todas y pagadas por Ether (la criptomoneda asociada a la plataforma Ethereum). Una de las aplicaciones más populares de Ethereum como plataforma incluye la creación de tókenes transables que se pueden usar como monedas (Ether), donde Ether es un activo digital en el tope de la cadena de bloques de Ethereum (Zhang et.al, 2019). Al momento del presente trabajo Ether es la segunda criptomoneda con mayor capitalización de mercado. 
 
@@ -707,18 +706,21 @@ La hipótesis de mercados eficientes es importante para predecir si los inversor
 
 Para testear la hipótesis de eficiencia de mercados se utilizan los tests de raíces unitarias. Si los precios del activo presentan raíces unitarias o exhiben comportamiento de paseo aleatorio se presenta una situación en la que los precios escapan a un equilibrio a largo plazo (serie no estacionaria) y por lo tanto no es posible predecir con precisión el precio futuro de la serie en base a información de precios pasados. Pero sin embargo, si la serie es estacionaria se produce una reversión a la media a largo plazo haciendo posibles los pronósticos. Gregoriu (2015) menciona que en los estudios originales de hipótesis de eficiencia de mercados se utilizan tests de raíces unitarias sin quiebres estructurales y, presentan el problema de que al aparecer en la serie quiebres estructurales, los tests convencionales tienen baja potencia para rechazar la presencia de raíces unitarias. Aplica test de raíces unitarias GARCH. La metodología comienza estableciendo un punto de comparación con el test de Dickey Fuller Aumentado y el de Phillips Perron (Kwiatkowski test) que son tests que no tienen elevada potencia para rechazar la hipótesis nula de raíz unitaria en presencia de uno o más quiebres estructurales. Gregoriu (2015) aplica el test de multiplicadores de Lagrange de raíces unitarias con quiebres estructurales. Narayán y Liu (2013) en el análisis de un conjunto de activos financieros relajan el supuesto de errores independientes e idénticamente distribuidos y proponen un modelo GARCH (1,1) de raíz unitaria que se acomoda a dos quiebres estructurales en el intercepto en presencia de errores heterocedásticos.
 
-Se incluye en el análisis descriptivo la evaluación de existencia de quiebres estructurales y de larga memoria junto con tests para determinar la ineficiencia de mercado en términos de medias y varianzas en la serie histórica de precios de Ether en la presente tesis.
+Se incluye en el análisis descriptivo la evaluación de existencia de larga memoria junto con tests para determinar la ineficiencia de mercado en términos de medias y varianzas en la serie histórica de precios de Ether en la presente tesis.
 
 Por otro lado, se modela la serie con técnicas autorregresivas integradas de medias móviles (del inglés, ARIMA). Azari (2019) utiliza ARIMA para la predicción de BTC en horizontes de tiempo corto y largo comparando los resultados con la performance de redes neuronales recursivas (RNN). Bukhari et al. (2020) utilizan métodos autorregresivos fraccionalmente integrados (ARFIMA) para el pronóstico de acciones en donde el órden de integración es fraccionario, a diferencia del ARIMA de orden entero.  En este caso se estudia el orden de integración del proceso marcando la importancia de las constantes de los procesos integrados que representan los efectos deterministas (Peña, 2010). Se modela la serie de precios de ETH con método ARFIMA y ARIMA en el presente trabajo y se presentan los pronósticos en los horizontes de tiempo definidos con las correspondientes métricas de error.
 
-En relación a métodos tradicionales de pronóstico de series de tiempo, Kurniawan y Madelan (2022) utilizan la técnica de Holt Winters para la predicción del precio de cierre de BTC, Ripple y Litecoin.  En el presente trabajo se plantea la técnica tradicional de suavizado de Holt-Winters (1960) , donde se construye el pronóstico utilizando suavizado exponencial que pondera las observaciones con un decaimiento exponencial a medida que las observaciones son más lejanas en el pasado (Hyndman, 2014).
+En relación a métodos tradicionales de pronóstico de series de tiempo, Kurniawan y Madelan (2022) utilizan la técnica de Holt Winters para la predicción del precio de cierre de BTC, Ripple y Litecoin.
+
+En el presente trabajo se plantea la técnica tradicional de suavizado de Holt-Winters (1960) , donde se construye el pronóstico utilizando suavizado exponencial que pondera las observaciones con un decaimiento exponencial a medida que las observaciones son más lejanas en el pasado (Hyndman, 2014).
 
 Bush (2019) aplica la técnica de pronóstico con RNN y LSTM de periodo corto y largo de memoria con corrección de pérdida de gradiente para realizar la comparación del pronóstico de la serie de tiempo. Se construyen modelos RNN y LSTM con  calibrado de hiperparámetros para el pronóstico de la serie de cierre de precios de Ether en el período definido en estudio.
 
-Se considera la introducción precedente como una primera aproximación al contenido de este trabajo. Se comparan las técnicas para la predicción RNN, LSTM, Holt-Winters, ARFIMA y ARIMA para la serie de tiempo de precios de cierre de Ether en dólares estadounidenses (ETH-USD), en el período de tiempo comprendido entre el 01/01/2017 y el 31/12/2021, en tres horizontes de pronóstico definidos en 5, 15 y 30 días, mediante los criterios de raíz cuadrada del error cuadrático medio (del inglés RMSE), error absoluto medio (del inglés MAE) y del error medio absoluto porcentual (del inglés, MAPE). Se busca entonces, construir un marco teórico acorde al fenómeno en estudio, realizar un análisis descriptivo y encontrar calibraciones adecuadas en los modelos mencionados para la serie de tiempo en estudio.
+Se considera la introducción precedente como una primera aproximación al contenido de este trabajo. Se comparan las técnicas para la predicción RNN, LSTM, Holt-Winters, ARFIMA y ARIMA para la serie de tiempo de precios de cierre de Ether en dólares estadounidenses (ETH-USD), en el período de tiempo comprendido entre el 01/01/2017 y el 31/12/2021, en tres horizontes de pronóstico definidos en 5, 15 y 30 días, mediante los criterios de raíz cuadrada del error cuadrático medio (del inglés RMSE), error absoluto medio (del inglés MAE) y del error medio absoluto porcentual (del inglés, MAPE). Se busca entonces, construir un marco metodológico acorde al fenómeno en estudio, realizar un análisis descriptivo y encontrar calibraciones adecuadas en los modelos mencionados para la serie de tiempo en estudio.
 
 \newpage
-# 2-Objetivos e Hipótesis
+
+# Capítulo 2 - Objetivos e Hipótesis
 
 ## Objetivos Generales:
 
@@ -726,13 +728,13 @@ Realizar un análisis comparativo de métodos de pronóstico paramétricos y no 
 
 ## Objetivos Específicos:
 
-- Construir, en base a la selección y sistematización de la literatura existente, un marco teórico que sustente la aplicabilidad de los métodos de pronóstico en la serie de datos de cierre diario de Ethereum y de los métodos de pronóstico de la volatilidad de los retornos logarítmicos de ETH/USD. 
+- Construir, en base a la selección y sistematización de la literatura existente, un marco metodológico que sustente la aplicabilidad de los métodos de pronóstico en la serie de datos de cierre diario de Ether y de los métodos de pronóstico de la volatilidad de los retornos logarítmicos de ETH/USD. 
  
-- Realizar un análisis descriptivo de las series de tiempo de valores de cierre de Ethereum y retornos logarítmicos de precio de ciere en el período de estudio.
+- Realizar un análisis descriptivo de las series de tiempo de valores de cierre de Ether y retornos logarítmicos de precio de cierre en el período de estudio.
  
-- Desarrollar los pronósticos de la serie de valores de cierre y de la volatilidad de Ethereum (ETH/USD) para los horizontes de tiempo fijados con las técnicas seleccionadas. Presentar en forma ordenada y sistematizada los resultados de la aplicación de las técnicas de pronóstico.
+- Desarrollar los pronósticos de la serie de valores de cierre y de la volatilidad de Ether (ETH/USD) para los horizontes de tiempo fijados con las técnicas seleccionadas. Presentar en forma ordenada y sistematizada los resultados de la aplicación de las técnicas de pronóstico.
  
-- Comparar los resultados obtenidos en el marco empírico y determinar la/s técnica/s que presenten mayor precisión de pronóstico contra los datos reales registrados en el mes de enero de 2022 en la cotización de cierre diario de Ethereum. Para la volatilidad, los pronósticos se comparan con la volatilidad aproximada por los residuales de los retornos logarítmicos al cuadrado en el periodo de estudio.  
+- Comparar los resultados obtenidos de manera empírica y determinar la/s técnica/s que presenten mayor precisión de pronóstico contra los datos reales registrados en el mes de enero de 2022 en la cotización de cierre diario de Ether. Para la volatilidad, los pronósticos se comparan con la volatilidad aproximada por los residuales de los retornos logarítmicos al cuadrado en el periodo de estudio.  
  
 - Realizar un análisis crítico de los resultados en relación al cumplimiento de las hipótesis planteadas.
  
@@ -744,21 +746,22 @@ Se postula que al desarrollar las técnicas de pronóstico de series temporales 
 
 
 \newpage
-# 3 Metodología
 
-La metodología que se emplea para el desarrollo de la presente tesis se centra en los aspectos de comparación estadística de modelos estadísticos utilizados para la predicción de una serie de tiempo diaria con alta volatilidad. Se utilizará para el pronóstico los datos de cierre diarios de la cotización de Ethereum recopilados en el período de tiempo entre 01/01/2017 y el 30/12/2021. Como período de comparación se utilizarán las cotizaciones de cierre diario de Ethereum correspondientes al mes de enero de 2022 y la aplicación de un esquema de validación cruzada a lo largo de la serie completa. Para la comparación de la volatilidad se utilizan los residuales de los retornos logarítmicos al cuadrado como aproximación a la volatilidad con pronósticos fuera de la muestra a un horizonte de un día y un tamaño muestral de 300 (del 5/4/2021 al 30/1/2022).
+# Capítulo 3 - Metodología
+
+La metodología que se emplea para el desarrollo de la presente tesis se centra en los aspectos de comparación de modelos estadísticos utilizados para la predicción de una serie de tiempo diaria con alta volatilidad. Se utilizará para el pronóstico los datos de cierre diarios de la cotización de Ether recopilados en el período de tiempo entre 01/01/2017 y el 30/12/2021. Como período de comparación se utilizarán las cotizaciones de cierre diario de Ether correspondientes al mes de enero de 2022 y la aplicación de un esquema de validación cruzada a lo largo de la serie completa. Para la comparación de la volatilidad se utilizan los residuales de los retornos logarítmicos al cuadrado como aproximación a la volatilidad con pronósticos fuera de la muestra a un horizonte de un día y un tamaño muestral de 300 (del 5/4/2021 al 30/1/2022).
  
 Se abarcan los fundamentos de los métodos de pronóstico a emplear y su justificación de aplicación al problema. Además, se eligen los criterios de comparación, definiendo así la estructura conceptual a emplear empíricamente.
  
 En la aplicación empírica se comienza con el análisis descriptivo de las series de tiempo estudiadas, se modelan los pronósticos utilizando las distintas técnicas y posteriormente se realiza la comparación de los resultados con los criterios definidos previamente.
  
-Se comunican los resultados junto con la  interpretación de los mismos. Se desarrollan las conclusiones del trabajo en relación a la crítica sobre los resultados obtenidos y a se plantean posibles investigaciones futuras.
-
 Se desarrollan los conceptos téoricos necesarios para el posterior trabajo empírico. Se busca mantener un orden en la complejidad de las técnicas que se desarrollan. Se comienza por una descripción de los modelos paramétricos utilizados para el pronóstico del precio de cierre de ETH/USD. Entre ellos en la presente tesis se trabaja con el modelo de suavizado exponencial, luego por los modelos autorregresivos integrados de medias móviles, los fraccionalmente integrados. Entre lo modelos no paramétricos para pronosticar el precio de cierre de ETH/UDS se desarrolla la descripción de conceptos relacionados con las redes neuronales autorregresivas NNETAR y los modelos de aprendizaje profundo de memoria larga LSTM.
 
 Por otro lado, se desarrollan los conceptos de los modelos ARCH, GARCH y EGARCH para el modelado de la heterocedasticidad condicional ya que generan un aporte necesario a la hora de la modelización y predicción de la volatilidad.
 
 Además de los modelos se mencionan las métricas aplicadas para el tratamiento de los pronósticos, el esquema de validación cruzada empleado, los estimadores de volatilidad y las consideraciones a emplear al momento de la evaluación de la performance del los modelos.
+
+Se comunican los resultados junto con la  interpretación de los mismos. Se desarrollan las conclusiones del trabajo en relación a la crítica sobre los resultados obtenidos y a se plantean posibles investigaciones futuras.
 
 \newpage
 ## Modelos Paramétricos:
@@ -836,7 +839,7 @@ Cuando la estacionalidad es aditiva:
 
 Nivel:
 
-\begin{equation}\large{\mathbf{l_{t}=\alpha(y_{t}-s_{t-m})+(1-\alpha)(l_{t-1}+b_{t-1})}\label{eq:2}\end{equation}
+\begin{equation}\large{\mathbf{l_{t}=\alpha(y_{t}-s_{t-m})+(1-\alpha)(l_{t-1}+b_{t-1})}}\label{eq:2}\end{equation}
 
 
 Crecimiento: 
@@ -984,6 +987,19 @@ El criterio de información Bayesiano:
 
 \begin{equation}\large{\mathbf{BIC=AIC+[log(T)-2](p+q+k+1)}}\label{eq:2}\end{equation}
 
+El criterio de información de Hannan-Quinn:
+
+\begin{equation}\large{\mathbf{HQC=n \text{ log}  \left ( \frac{RSS}{n} \right ) + \text{2k log n} }}\label{eq:2}\end{equation}
+
+Donde k es el número de parámetros, n es el número de observaciones, y RSS es la suma residual de cuadrados que resulta de una regresión lineal u otro modelo estadístico.
+
+El criterio de información de Shibata:
+
+\begin{equation}\large{\mathbf{Shibata=\hat{\sigma^{2}}+(1+\frac{2K}{n}) }}\label{eq:2}\end{equation}
+
+Donde $\sigma^2=\frac{1}{n}\sum{\epsilon_{t}^{2}}$, n es el número de observaciones, K es el número de parámetros. 
+
+
 Hyndman(2013) recomienda utilizar un método para encontrar el orden de integración d del modelo (correspondiente al término integral) y luego utilizar los criterios de información para la determinación de los órdenes p y q.
 Si se escribe el modelo ARIMA como:
 
@@ -997,7 +1013,7 @@ $\theta(B)=(1+\theta_1B+...+\theta_qB^q)$ es un polinomio de orden q en B, las c
 Los modelos ARIMA también pueden representar la estacionalidad de los datos. En ese caso se modela además la parte estacional de los datos $ARIMA (p,d,q) (P,D,Q)_m$ donde m es el número de observaciones al año. El componente estacional del modelo involucra a los retardos de la parte estacional del modelo. Esto se ve en los componentes estacionales de las funciones de autocorrelación y autocorrelación parcial.
 Se deben analizar los residuos que deja el modelo seleccionado, los mismos deben parecer ruido blanco. Se debe complementar el análisis de los residuos utilizando el test de Ljung-Box (1978) para comprobar si los residuos presentan autocorrelación.
 
-## ARFIMA:
+### ARFIMA:
 
 La propiedad de memoria larga de las series de tiempo está relacionada con el lento decrecimiento de las autocorrelaciones muestrales hasta que finalmente convergen a cero. En las series de tiempo que presentan memoria larga las innovaciones tienen efectos transitorios pero estos perduran durante largo tiempo. En el modelo de estas series el trabajar con diferenciación es excesivo pero no diferenciar tampoco genera un comportamiento adecuado. Granger (1980), Granger y Joyeux(1980) y Hosking (1981) proponen una serie de modelos con  orden de integración fraccionario. Son procesos ARMA fraccionalmente integrados denominados ARFIMA (p,d,q) donde d es un número real. Baillie y Bollerslev (1994) encuentran la presencia de memoria larga en series de activos financieros.
 
@@ -1023,7 +1039,7 @@ Además de los contrastes mencionados, una herramienta muy utilizada para detect
 
 ## Modelos No Paramétricos utlizados en predicción de precio de cierre:
 
-## NNETAR:
+### NNETAR:
 
 Las redes neuronales artificiales son métodos de pronóstico que se basan en modelos matemáticos simples del cerebro. Permiten modelizar relaciones complejas no lineales entre la variable de respuesta y sus predictores. Se puede pensar en una red neuronal como una red de neuronas que están organizadas en capas. Los predictores (o entradas) forman la capa inferior y los pronósticos (o salidas) forman la capa superior. También puede haber capas intermedias que contengan “neuronas ocultas” (Hyndman y Athanasopoulos, 2018).
 
@@ -1091,7 +1107,7 @@ En relación a los intervalos de pronóstico para las redes neuronales es necesa
 
 Donde $\mathbf{y_{t-1}}=(y_{t-1},y_{t-2},...,y_{t-r})'$ es un vector que contiene valores previos de la serie y $f$ es una red neuronal con 1 capa oculta. Si se supone que los errores $\epsilon_t$ son homocedásticos y posiblemente esten distribuidos normalmente, se puede generar una distribución de los errores de una normal o sino con remuestreo de los valores históricos. Al repetir cientos o miles de veces este proceso se generan los intervalos de confianza para los modelos de redes neuronales autorregresivas (NNETAR, sus siglas en inglés).
 
-## LSTM:
+### LSTM:
 
 Masci y Del Rosso (2020) explican en su apunte de clases que el proceso de memoria de corto y largo plazo fue introducido por Hochreiter y Schmidhuber (1997) como una red neuronal recurrente (RNN) que se entrena mediante la retropropagación a través del tiempo y supera el problema del gradiente de desaparición (vanishing gradient problem).
 Que sea recurrente significa que mediante bucles permiten que la información persista.
@@ -1165,7 +1181,21 @@ A veces se utiliza la varianza como una medida de la volatilidad. Sin embargo la
 
 Los hechos que se manifiestan empíricamente en los mercados financieros de manera regular se denominan hechos estilizados. En el caso de la volatilidad, Poon (2005) menciona que los retornos de los activos financieros tienen largas colas comparadas con la distribución normal, lo que implica que gran parte del tiempo los retornos de los activos financieros fluctúan en un rango menor que una distribución normal. Otra de las características más importantes para el presente trabajo es la naturaleza de variabilidad temporal de las fluctuaciones en los retornos que justamente fue lo que originó los modelos de heterocedasticidad condicional detallados más adelante. Otro hecho estilizado es la presencia de clústers de volatilidad donde un día de alta volatilidad en los mercados tiende a estar seguido por otro día de alta volatilidad. 
 
-Poon (2005) además menciona los siguiente hechos estilizados: los retornos de los activos financieros ($r_t$) no están generalmente autocorrelacionados a excepción de la autocorrelación a un retardo. La función de autocorrelación del valor absoluto de los retornos $|r_t|$ y la de $r_t^2$ decae lentamente y la correlación $corr(|r_t|,|r_{t-1})>corr(r_t^2,r_{t-1}^2)$. La autocorrelación para las potencias $corr(|r_t|,|r_{t-1})>corr(r_t^d,r_{t-1}^d)$ con $d\neq1$. Los retornos al cuadrado y el valor absoluto de los retornos son aproximaciones de la volatilidad diaria. La volatilidad presenta asimetría, situación que se observa en general luego de un día de retornos negativos lo cual se conoce como efecto Leverage. Otro hecho estilizado mencionado por Poon(2005) es que la volatilidad de diferentes activos financieros y diferentes mercados tienden a moverse en la misma dirección. 
+Poon (2005) además menciona los siguiente hechos estilizados: los retornos de los activos financieros ($r_t$) no están generalmente autocorrelacionados a excepción de la autocorrelación a un retardo. La función de autocorrelación del valor absoluto de los retornos $|r_t|$ y la de $r_t^2$ decae lentamente y la correlación $corr(|r_t|,|r_{t-1})>corr(r_t^2,r_{t-1}^2)$. La autocorrelación para las potencias $corr(|r_t|,|r_{t-1})>corr(r_t^d,r_{t-1}^d)$ con $d\neq1$. Los retornos al cuadrado y el valor absoluto de los retornos son aproximaciones de la volatilidad diaria. La volatilidad presenta asimetría, situación que se observa en general luego de un día de retornos negativos lo cual se conoce como efecto Leverage. Otro hecho estilizado mencionado por Poon(2005) es que la volatilidad de diferentes activos financieros y diferentes mercados tienden a moverse en la misma dirección.
+
+La volatilidad no es directamente observable. Para estimar la volatilidad diaria se podría trabajar con modelos que ajustan la volatilidad intradiaria pero lamentablemente los retornos intradiarios contienen muy poca información sobre la volatilidad del día siguiente (Tsay, 2010). A pesar de no ser directamente observable se presentan ciertas características comunes a los retornos de los activos financieros. Existen clústeres de volatilidad (momentos en los que se presenta alta volatilidad y momentos en los que presenta baja volatilidad agrupados), la volatilidad evoluciona a lo largo del tiempo de manera continua (los saltos de volatilidad son raros), la volatilidad no diverge hacia el infinito. Estadísticamente hablando puede considerarse a la volatilidad como estacionaria. La volatilidad parece reaccionar de manera diferente a una gran suba de precios o a una gran baja (efecto leverage). Este último punto se puede observar en los modelos EGARCH.
+
+Hay 2 grupos de modelos de heterocedasticidad condicional. Los que tienen una ecuación para la evolución de $\sigma_t^2$ y los que utilizan una ecuación estocástica para modelar $\sigma_t^2$.
+
+Tsay (2010) describe el proceso de  construcción de un modelo de volatilidad con los siguientes 4 pasos:
+
+1-Especificar la ecuación de la media de la serie de retornos con un modelo ARMA o ARIMA.
+
+2-Utilizar la ecuación de la media para testear los efectos ARCH.
+
+3-Especificar un modelo de volatilidad si los efectos ARCH resultan significativos y realizar la estimación de las ecuaciones del mismo.
+
+4-Chequear el ajuste del modelo y re definir en caso necesario.
 
 La estimación de la volatilidad: Si se considera una serie de tiempo de los retornos $r_t$ con t variando de 1...T la desviación estandard $\sigma$ corresponde a la volatilidad incondicional en el período T. Dado que la volatilidad no se mantiene constante en el tiempo es necesario utilizar la volatilidad condicional $\sigma_{t,T}$. La estimación de la volatilidad depende de la información disponible, al haber información intradiaria para las transacciones la estimación de la volatilidad se vuelve más precisa. El uso del retorno diario para aproximar la volatilidad resultó ser un estimador muy ruidoso. Mientras la ecuación (34) al cuadrado resulta ser un estimador insesgado de la varianza no condicional $\sigma^2$, la raíz cuadrada de $\sigma^2$ resulta ser un estimador sesgado de $\sigma$ debido a la desigualdad de Jensen que establece que si el retorno $r_t\sim N(0,\sigma^2)$ entonces $E(|r_t|)=\sigma_t\sqrt{2/\pi}$, por lo tanto $\hat{\sigma_t}=|r_t|/\sqrt{2/\pi}$ tiene una distribución condicional normal. Ding, Granger y Engle (1993) sugieren medir la volatilidad directamente desde el valor absoluto de los retornos. Hay trabajos empíricos de Taylor (1986), Ederington y Guan, (2000) y McKenzie (1999) que muestran que los valores absolutos de los retornos permiten mejores pronósticos que los retornos al cuadrado. Sin embargo los modelos de la familia ARCH son modelos de retornos al cuadrado.
 
@@ -1288,7 +1318,7 @@ donde $v_k$ y $v_t$ son los residuos de la observación k y t de la regresión. 
 
 
 
-## ARCH:
+### ARCH:
 
 En los procesos lineales ARIMA tanto la varianza marginal como la varianza condicional del error son constantes. En los procesos financieros pueden darse casos en los que la varianza condicional no es constante y representa la incertidumbre en las predicciones. Estos procesos van a reflejar un riesgo variable (Peña, 2010). Son los modelos de varianza condicional heterocedástica. Engle (1982) introdujo los modelos autorregresivos de varianza condicional heterocedástica (ARCH) donde la varianza condicional depende del pasado con estructura autorregresiva. Poon(2005) destaca que a diferencia de los modelos de volatilidad histórica, los modelos ARCH no utilizan las desviaciones estandar pasadas sino que formulan la varianza condicional de los retornos de un activo financiero con procedimientos de máxima verosimilitud. Los procesos ARCH relajan la hipótesis de normalidad de residuos y permiten procesos de ruido blanco formados por variables dependientes en los residuos. Una clase de modelos con esta propiedad es $e_t=\sigma_t\epsilon_t$, donde $\epsilon_t$ y $\sigma_t$ son procesos estacionarios independientes entre sí. Tsay(2010) menciona que en la práctica $\epsilon_t$ puede asumir una distribución normal, o una t-student estandarizada o una distribución de error generalizada. El proceso $e_t$ es un ruido blanco normal estandarizado. El proceso $\sigma_t$ es estacionario con estructura dinámica siendo su valor en el tiempo función de $e_t-i$ los valores de la serie previos a t. Al ser independientes $\sigma$ y $\epsilon$ la serie de $e_t$ tiene media marginal y media condicional igual a cero.
 
@@ -1323,9 +1353,22 @@ Los modelos ARCH deben complir que la varianza condicional sea siempre positiva.
 
 Entre las limitaciones de los modelos ARCH se encuentra que no hay una forma óptima de encontrar el número de rezagos $q$ para el modelo ARCH, existe una relación entre lo parsimonioso que puede resultar el modelo y la cantidad de términos que tenga el modelo en relación justamente a la cantidad de rezagos. Un modelo con mayor cantidad de parámetros resulta menos parsimonioso.
 
-## GARCH:
+### GARCH:
 
 Los modelos generalizados autorregresivos condicionales heterocedásticos GARCH son una extensión de los modelos ARCH con la diferencia de que $\sigma_t^2$ se vuelve recursivo. Son un desarrollo de Bollerslev (1986) y Taylor (1986), en estos modelos se permite que la varianza condicional sea dependiente de sus propios rezagos. Esto se usa para aproximar un modelo ARCH de orden alto con una media móvil en las varianzas.
+
+Para la serie de retornos logarítmicos $r_t$, se considera $a_t=r_t-\mu_t$ la innovación en el momento t. Entonces $a_t$ sigue un modelo GARCH(m,s) si
+$a_t=\sigma_t\epsilon_t$ y 
+
+
+\begin{equation}\large{\mathbf{\sigma_t^2=\alpha_0+\sum_{i=1}^m\alpha_ia_{t-i}^2+\sum_{j=1}^s\beta_j\sigma_{t-j}^2}}\end{equation}
+
+donde $\epsilon_t$ es una secuencia de variables aleatorias independientes e idénticamente distribuidas con media cero y varianza 1, $\alpha_0>0$, $\alpha_i\geq0$,$\beta_j\geq0$ y $\sum_{i=1}^{max(m,s)}(\alpha_i+\beta_j)<1$. $\alpha_i$ es el parámetro ARCH y $\beta_j$ es el parámetro GARCH.
+
+Un valor grande de $a_{t-1}^2$ o de $\sigma_{t-1}^2$ dan origen a una gran varianza. El valor grande de $a_{t-1}$ tiende a ser seguido por otro valor grande de $a_t$ y esto ocasiona comportamiento de clúster de volatilidad que se mencionó anteriormente.
+
+De manera similar a los modelos ARCH la distribución de un modelo GARCH tiene colas más pesadas que la distribución normal. El modelo provee al igual que el ARCH una ecuación paramétrica para evaluar la evolución de la volatilidad. Los pronósticos de más de un paso en adelante con GARCH convergen a la varianza no condicional del mismo modo que en el caso de los ARCH. Dentro de las desventajas del modelo se menciona que tiene el mismo efecto que el ARCH en relación a los shocks positivos y negativos.
+
 El modelo GARCH más simple es el GARCH(1,1) con ecuación:
 
 \begin{equation}\large{\mathbf{\sigma_t^2=\alpha_0+\alpha_1e_{t-1}^2+\beta_1\sigma_{t-1}^2}}\label{eq:2}\end{equation}
@@ -1335,8 +1378,8 @@ Si se escribe el modelo en la representación de los cuadrados de las variables,
 
 \begin{equation}\large{\mathbf{e_t^2=\alpha_0+(\alpha_1+\beta_1)e_{t-1}^2+v_t+\beta_1v_{t-1}}}\label{eq:2}\end{equation}
 
-Ecuación que muestra que los cuadrados de las observaciones siguen una estructura de dependencia similar a un ARMA(1,1]). El coeficiente $\lambda=(\alpha_1+\beta_1)$ se llama persistencia y en series financieras es próximo a la unidad (Peña, 2010).
-La generalización de el modelo GARCH se puede generalizar con una estructura autorregresiva de orden r en la dependencia de la varianza de los cuadrados de la serie y una estructura de medias móviles de orden s en la varianza condicional obteniéndose el modelo:
+Ecuación que muestra que los cuadrados de las observaciones siguen una estructura de dependencia similar a un ARMA(1,1). El coeficiente $\lambda=(\alpha_1+\beta_1)$ se llama persistencia y en series financieras es próximo a la unidad (Peña, 2010).
+El modelo GARCH se puede generalizar con una estructura autorregresiva de orden r en la dependencia de la varianza de los cuadrados de la serie y una estructura de medias móviles de orden s en la varianza condicional obteniéndose el modelo:
 
 \begin{equation}\large{\mathbf{\sigma_t^2=\alpha_0+\sum_{i=1}^r\alpha_ie_{t-i}^2+\sum_{j=1}^s\beta_j\sigma_{t-j}^2}}\label{eq:2}\end{equation}
 
@@ -1345,7 +1388,7 @@ Los parámetros de la ecuación deben verificar ciertas restricciones para que l
 
 Para la construcción de modelos ARCH o GARCH Peña (2010) recomienda seguir tres pasos fundamentales: reconocer la estructura, estimar los parámetros y comprobar su adecuación a los datos. Primero se ajusta un modelo ARIMA para eliminar la dependencia en la media, si los residuos no son independientes se observa ese comportamiento en la función de autocorrelación de los residuos al cuadrado del modelo ARIMA. La cantidad de residuos significativos en la FACP de los residuos al cuadrado permite aproximar la cantidad de términos del modelo ARCH. Peña (2010) recomienda utilizar un tratamiento a los valores atípicos previo al modelado de la heterocedasticidad condicional para evitar la confusión entre los efectos de los valores atípicos y la volatilidad que se intenta explicar con los ARCH o GARCH.
 
-## EGARCH:
+### EGARCH:
 
 Nelson (1991) propone el modelo exponencial GARCH con el objetivo de evitar una de las debilidades de los modelos ARCH y GARCH que es permitir los efectos asimétricos de los retornos positivos y negativos en la modelización de la volatilidad.
 
@@ -1363,7 +1406,7 @@ Se define un modelo EGARCH(p,q) con las ecuaciones a continuación:
 
 \begin{equation}\large{\mathbf{a_t=\sigma_t\epsilon_t}}\label{eq:2}\end{equation}
 
-\begin{equation}\large{\mathbf{ln(\sigma_t^2=\omega+\frac{1+\beta_1B+...+\beta_{p-1}B^{p-1}}{1-\alpha_1B-...-\alpha_qB^q}g(\epsilon_{t-1}))}}\label{eq:2}\end{equation}
+\begin{equation}\large{\mathbf{ln(\sigma_t^2)=\omega+\frac{1+\beta_1B+...+\beta_{p-1}B^{p-1}}{1-\alpha_1B-...-\alpha_qB^q}g(\epsilon_{t-1})}}\label{eq:2}\end{equation}
 
 Donde $\omega$ es constante, B es el operador de retardo, y $1+\beta_1B+...+\beta_{p-1}B^{p-1}$ y $1-\alpha_1B-...-\alpha_qB^q$ son polinomios con raíces fuera del círculo unitario y no tienen factores comunes. La ecuación utliza parametrización ARMA para describir la varianza condicional de la innovación $a_t$. La media de la varianza no condicional es $\omega$.
 
@@ -1414,15 +1457,15 @@ include_graphics("C:\\Users\\Sebastian\\Documents\\graficocvporbloques.jpg")
 ```
 
 
-En la figura se observa como se configuran diferentes intervalos temporales (bloques) en los que se entrenan los modelos (zona marcada en azul) y luego se realizan pronósticos (zonas marcadas en rojo). Luego las métricas son calculadas contra los valores reales de la serie y se realizan los promedios.
+En la figura (5) se observa como se configuran diferentes intervalos temporales (bloques) en los que se entrenan los modelos (zona marcada en azul) y luego se realizan pronósticos (zonas marcadas en rojo). Luego las métricas son calculadas contra los valores reales de la serie y se realizan los promedios.
 
-En las pruebas que se realizan en el marco empírico se confeccionan pronósticos a 5, 15 y 30 días para la serie de precios de cierre de los primeros días de 2022 y luego se informan los resultados obtenidos con el esquema de validación cruzada para tener otro elemento de comparación.
+En las pruebas que se realizan empíricamente se confeccionan pronósticos a 5, 15 y 30 días para la serie de precios de cierre de los primeros días de 2022 y luego se informan los resultados obtenidos con el esquema de validación cruzada en cada tramo de la serie según la figura (5) para tener otro elemento de comparación.
 
 \newpage
 
-# 6-Marco Empírico: 
+# Capítulo 4 - Resultados 
 
-En el estudio de los métodos de pronóstico para la serie de precios de cierre diario de ETH/USD y la volatilidad de ETH/USD se trabaja con la aplicación empírica de lo desarrollado en el marco teórico para generar las predicciones que luego serán comparadas.
+En el estudio de los métodos de pronóstico para la serie de precios de cierre diario de ETH/USD y la volatilidad de ETH/USD se trabaja con la aplicación empírica de lo desarrollado en la metodología para generar las predicciones que luego serán comparadas.
 
 Como primer punto se desarrolla un análisis descriptivo de la serie de precios de cierre diario de ETH/USD. En el presente trabajo de tesis se desarrollan modelos sobre series de tiempo univariantes, todos los modelos trabajan sobre el comportamiento histórico de la misma serie, aunque en el caso de ARIMA, ARCH, GARCH y EGARCH se aplica la transformación de la serie de precios de cierre diario a retornos logarítmicos.  
 
@@ -1454,7 +1497,7 @@ autoplot(ethTS) + xlab("Tiempo")+
 
 En la Figura anterior se muestran los precios de cierre Ether (ETH/USD) entre el 01/01/2017 y el 01/01/2022. 
 
-Se observa un comportamiento no estacionario de la serie, con una marcada tendencia ascendente a partir del 2021, un período de precios de cierre entre los 250 y 800 dólares que se extiende entre los años 2019 y 2021. También se aprecia otra etapa de fuerte crecimiento desde 2017 hasta el fin del primer cuarto del 2018 para luego una caída del precio hasta comienzos del 2019. Se observan períodos de baja del precio durante los meses del segundo cuarto de 2018 y en el segundo cuarto de 2021, donde las bajas fueron superiores al $100\%$. Por otro lado en el período que comienza en el último cuarto de 2019 hasta el comienzo del año 2021 la serie presenta menor variabilidad y los precios se ubican entre los 200 y los 500 dólares.
+Se observa un comportamiento no estacionario de la serie, con una marcada tendencia ascendente a partir del 2021, un período de precios de cierre estables entre los 250 y 800 dólares que se extiende entre los años 2019 y 2021. También se aprecia otra etapa de fuerte crecimiento desde 2017 hasta el fin del primer cuarto del 2018 para luego una caída del precio hasta comienzos del 2019. Se observan períodos de baja del precio durante los meses del segundo cuarto de 2018 y en el segundo cuarto de 2021, donde las bajas fueron superiores al $100\%$. Por otro lado en el período que comienza en el último cuarto de 2019 hasta el comienzo del año 2021 la serie presenta menor variabilidad y los precios se ubican entre los 200 y los 500 dólares.
 
 A continuación se estudia el gráfico de la función de autocorrelación de la serie de precios de cierre diario. En la FAC se observa el comportamiento de disminución lenta de los valores de autocorrelación típico de las series no estacionarias. 
 
@@ -1578,7 +1621,7 @@ knitr::kable(b,caption = "Resumen de precios anuales ETH/USD. Elaboración Propi
 \newpage
 Se observa en la tabla el crecimiento explosivo del primer año de estudio, con una corrección a la baja marcada en el segundo año. Durante los años 2020 y 2021 otra fase de crecimiento explosivo.
 
-Para el trabajo empirico con el modelo ARIMA y los modelos ARCH, GARCH y EGARCH se utiliza la serie de retornos logarítmicos de precios de ETH/USD. Se define la misma como:
+Para el trabajo empirico con el modelo ARIMA y los modelos ARCH, GARCH y EGARCH se utiliza la serie de retornos logarítmicos de precios de ETH/USD porque la serie original no es estacionaria. Se define la misma como:
 
 \begin{equation}\large{\mathbf{Z_t=log(P_t)-log(P_{t-1})}}\end{equation}
 
@@ -1592,7 +1635,7 @@ g76<-readRDS("~/g70.RDS")
 g76
 ```
 
-La Figura 4 muestra el comportamiento de los retornos logarítmicos del precio de ETH/USD. En general la serie aparenta presentar el comportamiento estacionario esperable en los hechos estilizados de retornos de activos financieros, aunque se observa un valor atípico en el año 2020 y los tests de KPSS y Dickey Fuller Aumentado rechazan la hipotesis de estacionariedad. No se observa comportamiento cíclico ni estacional en esta serie.
+La Figura 9 muestra el comportamiento de los retornos logarítmicos del precio de ETH/USD. En general la serie aparenta presentar el comportamiento estacionario esperable en los hechos estilizados de retornos de activos financieros, aunque se observa un valor fuertemente atípico en el año 2020 y los tests de KPSS y Dickey Fuller Aumentado rechazan la hipotesis de estacionariedad. No se observa comportamiento cíclico ni estacional en esta serie.
 
 ```{r, grafCuanti256, fig.height=4,fig.width=6, fig.cap="Distribución de densidad de retornos logarítmicos de ETH/USD vs normal. Diagrama QQ para retornos logarítmicos ETH/USD. Fuente: Elaboración Propia.",echo=F,message=F,warning=F}
 
@@ -1614,7 +1657,7 @@ g78<-ggplot(qr2, aes(sample=x)) +
 (g77|g78)
 ```
 
-En las Figuras precedentes se puede observar el comportamiento leptocúrtico de los retornos logarítmicos del precio de ETH/USD, lo que concuerda con lo mencionado en el marco teórico como hecho estilizado.
+En las Figuras precedentes se puede observar el comportamiento leptocúrtico de los retornos logarítmicos del precio de ETH/USD, lo que concuerda con lo mencionado como hecho estilizado.
 
 ```{r}
 
@@ -1634,17 +1677,17 @@ knitr::kable(aux_6,caption = "Resumen de estadísticos descriptivos para retorno
 
 ```
 
-La serie de retornos logaritmicos de ETH/USD contiene 1825 valores (por utilizar una diferenciación tiene un valor menos), no presenta faltantes, se rechaza con un valor p de 0 el supuesto de normalidad en la distribución mediante la prueba de Sapiro Wilk. El valor medio de 0.0030 muy cercano a cero es característico de los retornos logarítmicos de series financieras. 
+La serie de retornos logaritmicos de ETH/USD contiene 1825 valores (por utilizar una diferenciación tiene un valor menos), no presenta faltantes, se rechaza con un valor p de 0 el supuesto de normalidad en la distribución mediante la prueba de Shapiro Wilk. El valor medio de 0.0030 muy cercano a cero es característico de los retornos logarítmicos de series financieras. 
 
 \newpage
 
 ## Modelo ETS:
 
-A continuación se realiza el modelado y pronóstico de la serie de precios de cierre de ETH/USD con el método ETS y el paquete "Forecast" en R.
+A continuación se realiza el modelado y pronóstico de la serie de precios de cierre de ETH/USD con el método ETS y el paquete "Forecast" en R versión 4.0.4 (2021-02-15).
 
 En primer lugar se produce la selección de un modelo apropiado para la serie de tiempo. En base a los criterios desarrollados en el marco teórico el paquete Forecast (versión 8.18) en el software R determina cual es mejor modelo dentro de la familia de  suavizado exponencial para realizar el pronóstico.
 
-```{r,echo=F,include=F}
+```{r,echo=F,include=F,message=FALSE}
 # create a tsibble w/o a key
 
 ethTS2<-as.tibble(ethTS)
@@ -1674,7 +1717,7 @@ Los criterios de información AIC=24683.5000, AICc=24683.5300 y BIC=24711.0500.
 
 La representación de los componentes que identifica el modelo se observa en el gráfico a continuación:
 
-```{r,grafCuanti6, fig.align='center',fig.height=7.5,fig.width=5.5, fig.cap="Componentes del modelo ajustado ETS(M,A,N). Fuente: elaboración propia.",fig.scap="Componentes del modelo ajustado ETS(M,A,N).",echo=F}
+```{r,grafCuanti6, fig.align='center',fig.height=7.5,fig.width=5.5, fig.cap="Componentes del modelo ajustado ETS(M,A,N). Fuente: elaboración propia.",fig.scap="Componentes del modelo ajustado ETS(M,A,N).",echo=F,message=FALSE,warning=FALSE}
 
 g82<-components(fit) %>% autoplot() 
 
@@ -1689,7 +1732,7 @@ g82$labels$subtitle<-""
 
 
 g82$layers[[2]]<-NULL
-g82$layers
+#g82$layers
 
 g82 + labs(x="Año")
 
@@ -1708,10 +1751,10 @@ Las gráficas a continuación muestran los pronósticos calculados.
 ```{r, grafCuanti7, fig.height=4, fig.width=6.5, fig.cap="Pronóstico de precio de cierre de ETH/USD con horizonte de 5 días con modelo ETS(M,A,N). Fuente: elaboración propia.",fig.scap="Pronóstico de precio de cierre de ETH/USD con horizonte de 5 días con modelo ETS(M,A,N)",echo=F}
 g3<-fit %>%
   forecast(h = "5 days") %>%
-  autoplot(prueba2)+
+  autoplot(prueba2, fill='#000000')+
   labs(title="Precio de cierre de ETH/USD (h=5 días)",
-      x="2021-2022", y="USD",level="Nivel")
-g3
+      x="2021-2022", y="USD",level="Nivel \n de Confianza")
+g3+theme(panel.background = element_rect(fill ='#F0F8FF'))
 
 
 forecast_ets_5_d<-fit %>%
@@ -1736,10 +1779,11 @@ actual_ets<-ethTEST$close[1827:1856]
 ```{r, grafCuanti8, fig.height=4, fig.width=6.5, fig.cap="Pronóstico de precio de cierre de ETH/USD con horizonte de 15 días con modelo ETS(M,A,N).Fuente: elaboración propia.",fig.scap="Pronóstico de precio de cierre de ETH/USD con horizonte de 15 días con modelo ETS(M,A,N).",echo=F}
 g4<-fit %>%
   forecast(h = "15 days") %>%
-  autoplot(prueba2)+
+  autoplot(prueba2, fill='#000000')+
   labs(title="Precio de cierre de ETH/USD (h=15 días)",
-      x="2021-2022", y="USD",level="Nivel")
-g4
+      x="2021-2022", y="USD",level="Nivel \n de Confianza")
+
+g4+theme(panel.background = element_rect(fill ='#F0F8FF'))
 
 pronostico_ets_5<-fit %>% forecast(h="5 days")
 pronostico_ets_15<-fit %>% forecast(h="15 days")
@@ -1770,10 +1814,10 @@ actual_ets_5<-ethTEST$close[1827:1831]
 ```{r, grafCuanti9, fig.height=4, fig.width=6.5, fig.cap="Pronóstico de precio de cierre de ETH/USD con horizonte de 30 días con modelo ETS(M,A,N).Fuente: elaboración propia.",fig.scap="Pronóstico de precio de cierre de ETH/USD con horizonte de 30 días con modelo ETS(M,A,N).",echo=F}
 g4<-fit %>%
   forecast(h = "30 days") %>%
-  autoplot(prueba2)+
+  autoplot(prueba2, fill='#000000')+
   labs(title="Precio de cierre de ETH/USD (h=30 días)",
-      x="2021-2022", y="USD",level="Nivel")
-g4
+      x="2021-2022", y="USD",level="Nivel \n de Confianza")
+g4+theme(panel.background = element_rect(fill ='#F0F8FF'))
 
 
 ```
@@ -1808,7 +1852,7 @@ readr::write_rds(g81, here::here('g81.RDS'))
 
 ```
 
-Se observa que los residuos presentan un comportamiento de ruido blanco, la función de autocorrelación de residuos presenta valores inferiores a 0.0500, lo cual es indicio de que existe leve autocorrelación de residuos y la distribución de los residuos es leptocúrtica. 
+Se observa que los residuos presentan un comportamiento que difiere levemente de un ruido blanco, la función de autocorrelación de residuos presenta valores inferiores a 0.0500, lo cual es indicio de que existe leve autocorrelación de residuos y la distribución de los residuos es leptocúrtica. 
 
 
 Las métricas para el modelo ETS(M,A,N) en el periodo y los horizontes seleccionados son:
@@ -1829,7 +1873,7 @@ knitr::kable(tabla_fcst_ets_5_d,
 *Horizonte de 15 días*: pronóstico desde el 1/1/2022 al 15/1/2022:
 
 ```{r, echo=F,warning=F}
-tabla_fcst_ets_5_d <- tibble::tibble(  Métrica = c("RMSE","MAE","MAPE %"),
+tabla_fcst_ets_5_d <- tibble::tibble(  Métrica = c("RMSE","MAE","MAPE"),
                     Valor = c(410.9421,359.1125,11.0130)
                                       )
 
@@ -1842,7 +1886,7 @@ knitr::kable(tabla_fcst_ets_5_d,
 *Horizonte de 30 días*: pronóstico desde el 1/1/2022 al 30/1/2022:
 
 ```{r, echo=F,warning=F}
-tabla_fcst_ets_5_d <- tibble::tibble(  Métrica = c("RMSE","MAE","MAPE %"),
+tabla_fcst_ets_5_d <- tibble::tibble(  Métrica = c("RMSE","MAE","MAPE"),
                     Valor = c(839.4285,709.9851,25.9284)
                                       )
 
@@ -1867,7 +1911,7 @@ prueba %>%
   select(.model, RMSE:MAPE)
 ```
 
-Al trabajar con el modelo de validación cruzada propuesto en el marco teórico se subdivide la serie en tramos de 300 observaciones consecutivas, separadas entre sí por 200 observaciones y en cada una de los tramos definidos se calcula el pronóstico en los horizontes fijados, las métricas con respecto a la serie original y finalmente se promedian las métricas para tener los valores que se muestran a continuación. 
+Al trabajar con el modelo de validación cruzada propuesto en el marco teórico se subdivide la serie en tramos de 300 observaciones consecutivas, separándose entre sí por 200 observaciones y en cada una de los tramos definidos se calcula el pronóstico en los horizontes fijados, las métricas con respecto a la serie original y finalmente se promedian las métricas para tener los valores que se muestran a continuación. 
 
 En el gráfico a continuación se muestra el esquema de validación cruzada aplicado para el horizonte de 30 días. En los otros horizontes de pronóstico los intervalos seleccionados son los mismos, con la variación obvia del intervalo de testeo.
 
@@ -1934,7 +1978,7 @@ Obteniéndose los siguientes promedios
 Para un pronóstico de precio de cierre con horizonte de 5 días:
 
 ```{r, echo=F,warning=F}
-tabla_fcst_ets_5_d <- tibble::tibble(  Métrica = c("RMSE","MAE","MAPE %"),
+tabla_fcst_ets_5_d <- tibble::tibble(  Métrica = c("RMSE","MAE","MAPE"),
                     Valor = c("92.8000","35.8000","4.8600")
                                       )
 
@@ -1947,7 +1991,7 @@ knitr::kable(tabla_fcst_ets_5_d,
 Para un pronóstico a 15 días:
 
 ```{r, echo=F,warning=F}
-tabla_fcst_ets_5_d <- tibble::tibble(  Métrica = c("RMSE","MAE","MAPE %"),
+tabla_fcst_ets_5_d <- tibble::tibble(  Métrica = c("RMSE","MAE","MAPE"),
                     Valor = c("148.0100","72.8100","9.4900")
                                       )
 
@@ -1960,7 +2004,7 @@ knitr::kable(tabla_fcst_ets_5_d,
 Para un pronóstico a 30 días:
 
 ```{r, echo=F,warning=F}
-tabla_fcst_ets_5_d <- tibble::tibble(  Métrica = c("RMSE","MAE","MAPE %"),
+tabla_fcst_ets_5_d <- tibble::tibble(  Métrica = c("RMSE","MAE","MAPE"),
                     Valor = c("158.0100","96.3100","15.8100")
                                       )
 
@@ -1980,7 +2024,7 @@ Retomando la gráfica de la serie de precios de cierre de ETH/USD para el perío
 Dada la naturaleza no estacionaria de la serie, se procede de acuerdo a la metodología planteada por Hyndman y Athanasopoulos (2018) y se estudian las propiedades del la primer diferencia del logaritmo de la serie, o retorno logarítmico, definida como 
 ya se mencionó anteriormente como $Z_t=log(P_t)-log(P_{t-1})$.
 
-Donde $P_t$ es el precio de cierre en el día $t$. Se interpreta en base a la ecuación precedente que la serie diferenciada tiene una observación menos (porque en el momento inicial no se puede calcular). Se grafica a continuación la serie diferenciada del logaritmo del precio cierre de ETH en dólares estadounidenses partiendo desde el 02/01/2017 al 01/01/2022, conocida como retorno logarítmico. Se aplica la transformación logaritmo a los datos, además de la diferenciación para estabilizar la varianza.
+Donde $P_t$ es el precio de cierre en el día $t$. Se interpreta en base a la ecuación precedente que la serie diferenciada tiene una observación menos (porque en el momento inicial no se puede calcular). Se grafica a continuación la serie diferenciada del logaritmo del precio cierre de ETH en dólares estadounidenses partiendo desde el 02/01/2017 al 01/01/2022, conocida como retorno logarítmico. Se aplica la transformación logaritmo a los datos, además de la diferenciación, para estabilizar la varianza.
 
 ```{r,include=FALSE,eval=TRUE}
 log_returns<- c(NA,diff(log(prueba$value)))
@@ -2079,11 +2123,11 @@ g5<-model_arima_fit %>% gg_tsresiduals()
 
 ```
 
-El sistema realiza 2 tipos de búsquedas una paso a paso y otra en función de la minimización de AICc, coincidiendo en la selección de un modelo ARIMA(1,1,2)(1,0,0)[7]. Los valores de los criterios de información $AICc=5324$ y $BIC=5291$   
+El sistema realiza 2 tipos de búsquedas una paso a paso y otra en función de la minimización de AICc, coincidiendo en la selección de un modelo SARIMA(1,1,2)(1,0,0)[7]. Los valores de los criterios de información $AICc=5324$ y $BIC=5291$   
 
 El modelo resulta entonces:
 
-\begin{equation}\large{\mathbf{(1-\phi_1)(1-\Phi_1B^{7})(1-B)(1-B^7)y_t=(1-\theta_1B)(1-\theta_2B^2)\epsilon_t+c}}\end{equation}
+\begin{equation}\large{\mathbf{(1-\phi_1)(1-\Phi_1B^{7})(1-B)(1-B^7)y_t=(1-\theta_1B-\theta_2B^2)\epsilon_t+c}}\end{equation}
 
 Donde: $\phi_1=0.9169$ ,$\Phi_1=-0.9515$, $\theta_1=0.0686$, $\theta_2=-0.0460$, $c=0.0003$. Todos significativos a un nivel $\alpha=0.10$.
 
@@ -2106,7 +2150,7 @@ readr::write_rds(g75, here::here('g75.RDS'))
 ```
 
 
-```{r, grafCuanti13, fig.height=4, fig.width=7, fig.cap="Gráfico de residuos de modelo ARIMA(1,1,2) (1,0,0)(7) de retornos logarítmicos ETH/USD (2017-2022). Fuente: Elaboración Propia", fig.scap="Gráfico de residuos de modelo ARIMA(1,1,2) (1,0,0)(7) de retornos logarítmicos ETH/USD (2017-2022)", echo=F}
+```{r, grafCuanti13, fig.height=4, fig.width=7, fig.cap="Gráfico de residuos de modelo SARIMA(1,1,2) (1,0,0)(7) de retornos logarítmicos ETH/USD (2017-2022). Fuente: Elaboración Propia", fig.scap="Gráfico de residuos de modelo SARIMA(1,1,2) (1,0,0)(7) de retornos logarítmicos ETH/USD (2017-2022)", echo=F}
 
 g73<-readRDS("~/g73.RDS")
 g74<-readRDS("~/g74.RDS")
@@ -2118,7 +2162,7 @@ g73
 
 ```
 
-```{r,grafCuanti131, fig.height=8, fig.width=7, fig.cap="ACF y distribución de residuos de modelo ARIMA(1,1,2) (1,0,0)(7). Fuente: Elaboración Propia", fig.scap="ACF y distribución de residuos de modelo ARIMA(1,1,2) (1,0,0)(7).", echo=F}
+```{r,grafCuanti131, fig.height=8, fig.width=7, fig.cap="ACF y distribución de residuos de modelo SARIMA(1,1,2) (1,0,0)(7). Fuente: Elaboración Propia", fig.scap="ACF y distribución de residuos de modelo SARIMA(1,1,2) (1,0,0)(7).", echo=F}
 (g74/
 g75)
 
@@ -2171,11 +2215,11 @@ Se observan que el modelo ajustado automáticamente presenta raíces que no est�
 
 A continuación se grafica el pronóstico de la serie para 5 días:
 
-```{r, grafCuanti15, fig.height=3.5, fig.width=6.5, fig.cap="Pronóstico a 5 días del modelo ARIMA(1,1,2)(1,0,0)(7) retornos logarítmicos de ETH/USD (2017-2022).Fuente: Elaboración Propia.",fig.scap="Pronóstico a 5 días del modelo ARIMA(1,1,2)(1,0,0)(7) retornos logarítmicos de ETH/USD (2017-2022).",echo=F}
+```{r, grafCuanti15, fig.height=3.5, fig.width=6.5, fig.cap="Pronóstico a 5 días del modelo SARIMA(1,1,2)(1,0,0)(7) retornos logarítmicos de ETH/USD (2017-2022).Fuente: Elaboración Propia.",fig.scap="Pronóstico a 5 días del modelo SARIMA(1,1,2)(1,0,0)(7) retornos logarítmicos de ETH/USD (2017-2022).",echo=F}
 
 model_arima_fit  %>% 
   forecast(h=5) %>% 
-  autoplot(prueba2)+labs(x="Fecha",y="Cotización de cierre diario ETH/USD",level="Nivel")
+  autoplot(prueba2, fill='#000000')+labs(x="Fecha",y="Cotización de cierre diario ETH/USD",level="Nivel \n de Confianza")+theme(panel.background = element_rect(fill ='#F0F8FF'))
 
 
 ```
@@ -2185,21 +2229,21 @@ Donde los intervalos de confianza del 80\% 95\% se muestran en color sombreado c
 
 El pronóstico con ARIMA para 15 días resulta:
 
-```{r, grafCuanti16, fig.height=3.5, fig.width=6.5, fig.cap="Pronóstico a 15 días del modelo ARIMA(1,1,2)(1,0,0)(7) retornos logarítmicos de cierre de ETH/USD (2017-2022).Fuente: Elaboración Propia", fig.scap="Pronóstico a 15 días del modelo ARIMA(1,1,2)(1,0,0)(7) retornos logarítmicos de ETH/USD (2017-2022).",echo=F}
+```{r, grafCuanti16, fig.height=3.5, fig.width=6.5, fig.cap="Pronóstico a 15 días del modelo SARIMA(1,1,2)(1,0,0)(7) retornos logarítmicos de cierre de ETH/USD (2017-2022).Fuente: Elaboración Propia", fig.scap="Pronóstico a 15 días del modelo SARIMA(1,1,2)(1,0,0)(7) retornos logarítmicos de ETH/USD (2017-2022).",echo=F}
 
 model_arima_fit  %>% 
   forecast(h=15) %>% 
-  autoplot(prueba2)+labs(x="Fecha",y="Cotización de cierre diario ETH/USD",level="Nivel")
+  autoplot(prueba2, fill='#000000')+labs(x="Fecha",y="Cotización de cierre diario ETH/USD",level="Nivel \n de Confianza")+theme(panel.background = element_rect(fill ='#F0F8FF'))
 
 
 ```
 
 Para un horizonte de 30 días:
 
-```{r, grafCuanti17, fig.height=3.5, fig.width=6.5, fig.cap="Pronóstico a 30 días del modelo ARIMA(1,1,2)(1,0,0)(7) ajustado a logaritmo de precios de cierre de ETH/USD (2017-2022). Fuente: Elaboración Propia",fig.scap="Pronóstico a 30 días del modelo ARIMA(1,1,2)(1,0,0)(7) ajustado a logaritmo de precios de cierre de ETH/USD (2017-2022)",echo=F}
+```{r, grafCuanti17, fig.height=3.5, fig.width=6.5, fig.cap="Pronóstico a 30 días del modelo SARIMA(1,1,2)(1,0,0)(7) ajustado a logaritmo de precios de cierre de ETH/USD (2017-2022). Fuente: Elaboración Propia",fig.scap="Pronóstico a 30 días del modelo SARIMA(1,1,2)(1,0,0)(7) ajustado a logaritmo de precios de cierre de ETH/USD (2017-2022)",echo=F}
 model_arima_fit  %>% 
   forecast(h=30) %>% 
-  autoplot(prueba2)+labs(x="Fecha",y="Cotización de cierre diario ETH/USD",level="Nivel")
+  autoplot(prueba2, fill='#000000')+labs(x="Fecha",y="Cotización de cierre diario ETH/USD",level="Nivel \n de Confianza")+ theme(panel.background = element_rect(fill ='#F0F8FF'))
 
 #model_arima_fit$estimate
 ```
@@ -2249,7 +2293,7 @@ mape(actual_arima, predicted_arima)
 *Horizonte de 5 días*: pronóstico desde el 1/1/2022 al 5/1/2022: 
 
 ```{r, echo=F,warning=F}
-tabla_fcst_ets_5_d <- tibble::tibble(  Métrica = c("RMSE","MAE","MAPE %"),
+tabla_fcst_ets_5_d <- tibble::tibble(  Métrica = c("RMSE","MAE","MAPE"),
                     Valor = c(117.8213,108.3372,2.9215)
                                       )
 
@@ -2263,7 +2307,7 @@ knitr::kable(tabla_fcst_ets_5_d,
 *Horizonte de 15 días*: pronóstico desde el 1/1/2022 al 15/1/2022:
 
 ```{r, echo=F,warning=F}
-tabla_fcst_ets_5_d <- tibble::tibble(  Métrica = c("RMSE","MAE","MAPE %"),
+tabla_fcst_ets_5_d <- tibble::tibble(  Métrica = c("RMSE","MAE","MAPE"),
                     Valor = c(470.5689,409.8491,12.5723)
                                       )
 
@@ -2276,7 +2320,7 @@ knitr::kable(tabla_fcst_ets_5_d,
 *Horizonte de 30 días*: pronóstico desde el 1/1/2022 al 30/1/2022:
 
 ```{r, echo=F,warning=F}
-tabla_fcst_arima_30_d <- tibble::tibble(  Métrica = c("RMSE","MAE","MAPE %"),
+tabla_fcst_arima_30_d <- tibble::tibble(  Métrica = c("RMSE","MAE","MAPE"),
                     Valor = c(1026.5031,861.8827,31.5266)
                                       )
 
@@ -2303,7 +2347,7 @@ prueba %>%
 Para un pronóstico a 5 días:
 
 ```{r, echo=F,warning=F}
-tabla_fcst_arima_5_d <- tibble::tibble(  Métrica = c("RMSE","MAE","MAPE %"),
+tabla_fcst_arima_5_d <- tibble::tibble(  Métrica = c("RMSE","MAE","MAPE"),
                     Valor = c("82.1100","34.8900","5.4500")
                                       )
 
@@ -2316,7 +2360,7 @@ knitr::kable(tabla_fcst_arima_5_d,
 Para un pronóstico a 15 días:
 
 ```{r, echo=F,warning=F}
-tabla_fcst_arima_15_d <- tibble::tibble(  Métrica = c("RMSE","MAE","MAPE %"),
+tabla_fcst_arima_15_d <- tibble::tibble(  Métrica = c("RMSE","MAE","MAPE"),
                     Valor = c("145.1000","80.7100","12.4200")
                                       )
 
@@ -2329,7 +2373,7 @@ knitr::kable(tabla_fcst_arima_15_d,
 Para un pronóstico a 30 días:
 
 ```{r, echo=F,warning=F}
-tabla_fcst_arima_30_d <- tibble::tibble(  Métrica = c("RMSE","MAE","MAPE %"),
+tabla_fcst_arima_30_d <- tibble::tibble(  Métrica = c("RMSE","MAE","MAPE"),
                     Valor = c("275.0300","152.0200","19.5000")
                                       )
 
@@ -2345,7 +2389,7 @@ knitr::kable(tabla_fcst_arima_30_d,
 
 En este punto del trabajo se busca evaluar la performance para pronóstico de un modelo autorregresivo fraccionalmente integrado de medias móviles y continuar con el modelado de la media del proceso.
 
-En relación con el modelo ARIMA ajustado surge la posibilidad de cuestionar si el modelo fue sobrediferenciado y presentarse un proceso de memoria larga en la media. De acuerdo a lo presentado en el marco teórico, Crato y Ray (1996) basándose en un extenso estudio realizado mediante simulación concluyen que únicamente cuando el número de observaciones es elevado y la persistencia muy fuerte puede estar justificado el uso de los modelos ARFIMA. 
+En relación con el modelo ARIMA ajustado surge la posibilidad de cuestionar si el modelo fue sobrediferenciado y presentarse un proceso de memoria larga en la media. De acuerdo a lo presentado en la metodología, Crato y Ray (1996) basándose en un extenso estudio realizado mediante simulación concluyen que únicamente cuando el número de observaciones es elevado y la persistencia muy fuerte puede estar justificado el uso de los modelos ARFIMA. 
 
 En relación a la cantidad de observaciones disponibles, el conjunto total de precios de cierre entre los años 2017 y 2022 contiene 1826 observaciones con lo que se considera un conjunto de longitud apropiada para la técnica. Del resultado de la modelización se obtiene la persistencia.
 
@@ -2357,7 +2401,7 @@ El modelo obtenido mediante Forecast es el siguiente:
 
 Donde: $d=0.4996$, $\theta_1=-0.5779$,$\theta_2=-0.4768$,$\theta_3=-0.3780$,$\theta_4=-0.3349$,$\theta_5=-0.1022$.
 
-Al ser $d<0.5000$ se observa un proceso de memoria larga en el que las autocorrelaciones decrecen lentamente (aproximadamente de manera hiperbólica) como se observa en la figura a continuación. Los criterios de información del modelo son AIC=21064,6300 y AICc=21064,4500 y BIC=21103,2000.
+Al ser $d<0.5000$ se observa un proceso de memoria larga en el que las autocorrelaciones decrecen lentamente como se observa en la figura a continuación. Los criterios de información del modelo son AIC=21064,6300 y AICc=21064,4500 y BIC=21103,2000.
 
 ```{r,grafCuanti18, fig.height=4, fig.width=6.5, fig.cap="Función de Autocorrelación ETH/UDS cierre diario (retardo 200 días). Fuente: Elaboración Propia.", fig.scap="Función de Autocorrelación ETH/UDS cierre diario (retardo 200 días).",echo=F}
 ggAcf(ethTS,lag.max = 200)+ggtitle("")
@@ -2730,22 +2774,7 @@ knitr::kable(tabla_fcst_arfima_30_d,
 
 ## Modelo ARCH: 
 
-En esta sección del marco empírico se trabaja sobre modelos que pueden captar la variabilidad condicional no constante de la serie de en estudio. Se comienza con el modelo autorregresivo de heterocedasticidad condicional. Estos modelos, como se detalla en el marco teórico fueron propuestos por Engle (1982) para representar la volatilidad de las series en los mercados financieros. La volatilidad es la desviación estandard condicional del precio de un activo. Tiene un importante rol para el cálculo del riesgo de una posición financiera. Modelar la volatilidad de una serie temporal mejora la estimación de parámetros y la precisión de pronósticos de intervalos (Tsay,2010).
-
-La volatilidad no es diréctamente observable. Para estimar la volatilidad diaria se podría trabajar con modelos que ajustan la volatilidad intradiaria pero lamentablemente los retornos intradiarios contienen muy poca información sobre la volatilidad del día siguiente (Tsay, 2010). A pesar de no ser directamente observable se presentan ciertas características comunes a los retornos de los activos financieros. Existen clústeres de volatilidad (momentos en los que se presenta alta volatilidad y momentos en los que presenta baja volatilidad agrupados), la volatilidad evoluciona a lo largo del tiempo de manera continua (los saltos de volatilidad son raros), la volatilidad no diverge hacia el infinito. Estadísticamente hablando puede considerarse a la volatilidad como estacionaria. La volatilidad parece reaccionar de manera diferente a una gran suba de precios o a una gran baja (efecto leverage). Este último punto se puede observar en los modelos EGARCH.
-
-Hay 2 grupos de modelos de heterocedasticidad condicional. Los que tienen una ecuación para la evolución de $\sigma_t^2$ y los que utilizan una ecuación estocástica para modelar $\sigma_t^2$.
-
-Tsay (2010) describe el proceso de  construcción de un modelo de volatilidad con los siguientes 4 pasos:
-
-1-Especificar la ecuación de la media de la serie de retornos con un modelo ARMA o ARIMA.
-
-2-Utilizar la ecuación de la media para testear los efectos ARCH.
-
-3-Especificar un modelo de volatilidad si los efectos ARCH resultan significativos y realizar la estimación de las ecuaciones del mismo.
-
-4-Chequear el ajuste del modelo y re definir en caso necesario.
-
+En esta sección del se trabaja sobre modelos que pueden captar la variabilidad condicional no constante de la serie de en estudio. Se comienza con el modelo autorregresivo de heterocedasticidad condicional. Estos modelos, como se detalla en la metodología fueron propuestos por Engle (1982) para representar la volatilidad de las series en los mercados financieros. La volatilidad es la desviación estandard condicional del precio de un activo. Tiene un importante rol para el cálculo del riesgo de una posición financiera. Modelar la volatilidad de una serie temporal mejora la estimación de parámetros y la precisión de pronósticos de intervalos (Tsay,2010).
 
 Con esto se intenta capturar información existente en la serie que no puede ser correctamente modelada con los ARIMA o ARFIMA anteriormente aplicados, justamente porque son modelos que modelan la media de la serie. En esta caso se busca complementar el estudio con el modelado de la heterocedasticidad condicional.
 
@@ -2753,7 +2782,7 @@ El método que se aplica a continuación incluye la prueba de multiplicador de L
 
 En la sección en la que se modela ARIMA se observa que la serie de las diferencias de los logaritmos de los precios de cierre de ETH/USD presentan el siguiente comportamiento (Figura 18).
 
-```{r,  grafCuanti20, fig.height=4, fig.width=5.5, fig.cap="Gráfico de retornos logarítmicos de precios de cierre de ETH/USD (2017-2022) y Función de Autocorrelación Parcial",echo=F,message=FALSE}
+```{r,  grafCuanti20, fig.height=4, fig.width=5.5, fig.cap="Gráfico de retornos logarítmicos de precios de cierre de ETH/USD (2017-2022) y Función de Autocorrelación y Autocorrelación Parcial",echo=F,message=FALSE}
 # Se vuelve a testear raíces unitarias con test de Dickey Fuller Aumentado:
 #urdftest_lag2 = floor(12*(length(diff(ethTS))/100)^0.25)
 #ur.df(diff(ethTS), lags = urdftest_lag2, type = "none")
@@ -2769,8 +2798,11 @@ g27<-prueba %>% autoplot(difference(log(value)))+ ylab("Log(Retorno)")+xlab("Fec
 #garch(na.omit(difference(log(prueba$value))),control=garch.control(grad="numerical",trace=FALSE))
 
 g28<-ggAcf(difference(log(prueba$value))^2,type = 'partial')+ggtitle('Retornos al cuadrado')
+g29<-ggAcf(difference(log(prueba$value))^2)+ggtitle('Retornos al cuadrado')
+
 g27/
-g28
+g28/
+g29
 ```
 
 Al visualizar la serie de los rendimientos se detecta que la varianza de los mismos no es constante. Al observar la función de autocorrelacion parcial de los retornos al cuadrado se observa en los 4 primeros retardos que la serie de retornos al cuadrado no es serialmente independiente y existe la presencia de comportamiento ARCH. 
@@ -2790,7 +2822,7 @@ autoplot(residuos_arima_cuadrado)+ylab("Residuos^2")+xlab("Fecha")
 
 En el gráfico anterior se observa que los residuos al cuadrado presentan momentos de mayor volatilidad, principalmente entre 2017 y 2018, el primer trimestre de 2020 y mitad de año del 2021. La varianza es heterocedástica. Se debe tener en cuenta que el estimador de la varianza condicional de los residuos al cuadrado no es un estimador eficiente de la varianza condicional como se menciona en el marco teórico pero sirve como aproximación para determinar el orden del modelo ARCH.
 
-Se testea si los residuos al cuadrado rezagados son significativos para explicar el comportamiento de los residuos al cuadrado. Esto corresponde a realizar un ajuste por regresión entre los valores de residuos en el momento $t$ y $t-l$ donde $l$ es el retardo que de ser significativo daría el orden del modelo ARCH. Para hacer esto, se utiliza una función en R del paquete FinTS (ArchTest) que computa el test de los multiplicadores de Lagrange. El test muestra valores de rechazo de la hipótesis nula (la misma afirma queno se presenta comportamiento ARCH) para los primeros 4 rezagos, con valor p cercano a cero. 
+Se testea si los residuos al cuadrado rezagados son significativos para explicar el comportamiento de los residuos al cuadrado. Esto corresponde a realizar un ajuste por regresión entre los valores de residuos en el momento $t$ y $t-l$ donde $l$ es el retardo que de ser significativo daría el orden del modelo ARCH. Para hacer esto, se utiliza una función en R del paquete FinTS (ArchTest) que computa el test de los multiplicadores de Lagrange. El test muestra valores de rechazo de la hipótesis nula (la misma afirma que no se presenta comportamiento ARCH) para los primeros 4 rezagos, con valor p cercano a cero. 
 
 
 Para el ajuste del modelo ARCH(4) se utilizó el paquete RUGARCH(Ghalanos, 2015) en R. Se realizó una comparación de diferentes variantes de modelos ARCH(4) considerando las distintas distribuciones de densidad para las innovaciones. Los resultados se resumen en la tabla a continuación.
@@ -2880,9 +2912,9 @@ include_graphics("C:\\Users\\Sebastian\\Documents\\ACF_residuos_estandarizados_A
 ```
 
 
-En relación a los gráficos se puede observar que el modelo parece ser adecuado para describir la dependencia lineal tanto en la serie de los retornos como en la volatilidad.
+En relación a los gráficos se puede observar por la cantidad de puntos fuera de los límites en el total de rezagos que el modelo parecería ser adecuado para describir la dependencia lineal tanto en la serie de los retornos como en la volatilidad.
 
-Se realiza el pronóstico del desvío estándar condicional en la forma de fuera de la muestra con un horizonte de pronóstico de 1 día y dejando 300 observaciones fuera de la muestra. El método utilizado es de horizonte deslizante de tiempo. 
+Se realiza el pronóstico del desvío estándar condicional fuera de la muestra con un horizonte de pronóstico de 1 día y dejando 300 observaciones fuera de la muestra. El método utilizado es de horizonte deslizante de tiempo. 
 
 ```{r,grafCuanti23, fig.align='center',fig.height=4,fig.width=6,fig.height=5, fig.width=10.5, fig.cap="Gráfico de pronóstico de desvio estándar condicional (h=5), desvío estandar condicional estimado con ARCH(4) y residuos al cuadrado de modelo ARIMA ",echo=F,include=F}
 
@@ -3037,7 +3069,7 @@ g14<-ggplot(graf_var_conf_30_d, aes(x = Fecha, y = Valor )) +
 
 ```
 
-Dentro de las debilidades de los modelos ARCH se pueden mencionar que el modelo asume que los shocks positivos y negativos tienen el mismo efecto en la volatilidad porque dependen del cuadrado de los shocks previos. Esto no se observa en la serie donde los shocks se ven al alza y a la baja de precio. Otro aspecto a considerar es la leptocurtosis en los residuos detectada en el modelado con ARCH(4), situación descripta como hecho estilizado en la bibliografía empleada en el marco teórico.
+Dentro de las debilidades de los modelos ARCH se pueden mencionar que el modelo asume que los shocks positivos y negativos tienen el mismo efecto en la volatilidad porque dependen del cuadrado de los shocks previos. Esto no se observa en la serie donde los shocks se ven al alza y a la baja de precio. Otro aspecto a considerar es la leptocurtosis en los residuos detectada en el modelado con ARCH(4), situación descripta como hecho estilizado en la bibliografía empleada en la metodología.
 
 ```{r,grafCuanti26, fig.height=5, fig.width=10.5, fig.cap="Precios de Cierre - Varianza Condicional (log(Retornos)) ARCH(4)",echo=F,eval=F,include=FALSE}
 
@@ -3065,18 +3097,6 @@ El modelo ARCH es restrictivo donde por ejemplo $\alpha_1$ en un ARCH(1) debe es
 
 Continuando con la modelización de la varianza condicional se aplica el modelo ARCH generalizado de Bollerslev (1986).
 
-Para la serie de retornos logarítmicos $r_t$, se considera $a_t=r_t-\mu_t$ la innovación en el momento t. Entonces $a_t$ sigue un modelo GARCH(m,s) si
-$a_t=\sigma_t\epsilon_t$ y 
-
-
-\begin{equation}\large{\mathbf{\sigma_t^2=\alpha_0+\sum_{i=1}^m\alpha_ia_{t-i}^2+\sum_{j=1}^s\beta_j\sigma_{t-j}^2}}\end{equation}
-
-donde $\epsilon_t$ es una secuencia de variables aleatorias independientes e idénticamente distribuidas con media cero y varianza 1, $\alpha_0>0$, $\alpha_i\geq0$,$\beta_j\geq0$ y $\sum_{i=1}^{max(m,s)}(\alpha_i+\beta_j)<1$. $\alpha_i$ es el parámetro ARCH y $\beta_j$ es el parámetro GARCH.
-
-Un valor grande de $a_{t-1}^2$ o de $\sigma_{t-1}^2$ dan origen a una gran varianza. El valor grande de $a_{t-1}$ tiende a ser seguido por otro valor grande de $a_t$ y esto ocasiona comportamiento de clúster de volatilidad que se mencionó anteriormente.
-
-De manera similar a los modelos ARCH la distribución de un modelo GARCH tiene colas más pesadas que la distribución normal. El modelo provee al igual que el ARCH una ecuación paramétrica para evaluar la evolución de la volatilidad. Los pronósticos de más de un paso en adelante con GARCH convergen a la varianza no condicional del mismo modo que en el caso de los ARCH. Dentro de las desventajas del modelo se menciona que tiene el mismo efecto que el ARCH en relación a los shocks positivos y negativos.
-
 Del mismo modo que en el modelo ARCH se estudia el ajuste del modelo con diferentes distribuciones de densidad condicional para las innovaciones. En la tabla a continuación se detallan los resultados de los tests sobre los residuos de los modelos con un nivel de confianza del 5\%.
 
 ```{r,echo=FALSE}
@@ -3089,7 +3109,7 @@ knitr::kable(tabla_garch,
 
 ```
 
-Donde las distribuciones empleadas son NORM para la distribución normal, SNORM la distribución normal sesgada, STD la distribución t-Student, SSTD la t-Student sesgada, GED la distribución de error generalizada, SGED la distribución de error generalizada sesgada, NIG la distribución normal inversa, GHYP la distribución generalizada hiperbólica. De acuerdo a la información resumida en el cuadro anterior, se pudo obtener coeficientes significativos del modelo sólo en el caso de GARCH(1,1) bajo el supuesto de distribución de densidad condicional normal par las innovaciones y los residuos obtenidos del modelo son leptocúrticos y se rechaza el test de bondad de ajuste de Pearson con valor p de cero. Por otro lado, en el GARCH (1,1) con distribución de innovaciones normal no se rechazan las hipótesis nulas en los test de correlación de residuos ni de residuos al cuadrado, tampoco el test ARCH de rezagos superiores con lo que se considera que el orden del modelo GARCH (1,1) seleccionado es apropiado en relación al orden del modelo. 
+De acuerdo a la información resumida en el cuadro anterior, se pudo obtener coeficientes significativos del modelo sólo en el caso de GARCH(1,1) bajo el supuesto de distribución de densidad condicional normal par las innovaciones y los residuos obtenidos del modelo son leptocúrticos y se rechaza el test de bondad de ajuste de Pearson con valor p de cero. Por otro lado, en el GARCH (1,1) con distribución de innovaciones normal no se rechazan las hipótesis nulas en los test de correlación de residuos ni de residuos al cuadrado, tampoco el test ARCH de rezagos superiores con lo que se considera que el orden del modelo GARCH (1,1) seleccionado es apropiado en relación al orden del modelo. 
 
 Se ajusta a continuación el modelo GARCH (1,1) y su ecuación resulta:
 
@@ -3152,7 +3172,7 @@ include_graphics("C:\\Users\\Sebastian\\Documents\\ACF_Residuos_Estandarizados_G
 ```
 
 
-En relación a los gráficos se puede observar que el modelo parece ser adecuado para describir la dependencia lineal tanto en la serie de los retornos como en la volatilidad.
+En relación a los gráficos anteriores y la cantidad de puntos fuera de los límites de especificación en el total de rezagos analizados se puede observar que el modelo parece ser adecuado para describir la dependencia lineal tanto en la serie de los retornos como en la volatilidad.
 
 Del mismo modo que con el modelo ARCH se realizan los pronósticos para el desvío estandar  condicional utlizando un pronóstico fuera de la muestra con un horizonte de 1 día y horizonte deslizante de 300 muestras fuera de la muestra. Se presentan a continuación las gráficas obtenidas con el pronóstico de GARCH(1,1).
 
@@ -3221,7 +3241,7 @@ knitr::kable(tabla_fcst_garch,
 
 
 
-El modelo generalizado modela la volatilidad de la serie de retornos y estos están relacionados con momentos en los que la serie original sufre cambios de precio relativamente abruptos, aunque los shocks pueden ser positivos o negativos. En relación al modelo ARCH previamente analizado se puede destacar el hecho de que el modelo resulta potencialmente más simple y parsimonioso dado que captura los afectos ARCH(4) con 2 parámetros.
+El modelo generalizado modela la volatilidad de la serie de retornos y estos están relacionados con momentos en los que la serie original sufre cambios de precio relativamente abruptos, aunque los shocks pueden ser positivos o negativos. En relación al modelo ARCH previamente analizado se puede destacar el hecho de que el modelo resulta potencialmente más simple y parsimonioso dado que captura los efectos ARCH(4) con 2 parámetros.
 
 
 
@@ -3357,7 +3377,7 @@ knitr::kable(tabla_egarch,
 
 ```
 
-Donde las distribuciones empleadas son NORM para la distribución normal, SNORM la distribución normal sesgada, STD la distribución t-Student, SSTD la t-Student sesgada, GED la distribución de error generalizada, SGED la distribución de error generalizada sesgada, NIG la distribución normal inversa, GHYP la distribución generalizada hiperbólica. De acuerdo a la información resumida en el cuadro anterior, se pudo obtener coeficientes significativos del modelo sólo en el caso de EGARCH(1,1), de manera parcial porque uno de los coeficientes no resulta significativo a un nivel $\alpha=0.05$, bajo el supuesto de distribución de densidad condicional normal par las innovaciones y los residuos obtenidos del modelo son leptocúrticos y se rechaza el test de bondad de ajuste de Pearson con valor p cercano a cero. Por otro lado, en el EGARCH (1,1) con distribución de innovaciones normal no se rechazan las hipótesis nulas en los test de correlación de residuos ni de residuos al cuadrado, tampoco el test ARCH de rezagos superiores con lo que se considera que el orden del modelo EGARCH (1,1) seleccionado es apropiado en relación al orden del modelo. 
+De acuerdo a la información resumida en el cuadro anterior, se pudo obtener coeficientes significativos del modelo sólo en el caso de EGARCH(1,1), de manera parcial porque uno de los coeficientes no resulta significativo a un nivel $\alpha=0.05$, bajo el supuesto de distribución de densidad condicional normal para las innovaciones y los residuos obtenidos del modelo son leptocúrticos y se rechaza el test de bondad de ajuste de Pearson con valor p cercano a cero. Por otro lado, en el EGARCH (1,1) con distribución de innovaciones normal no se rechazan las hipótesis nulas en los test de correlación de residuos ni de residuos al cuadrado, tampoco el test ARCH de rezagos superiores con lo que se considera que el orden del modelo EGARCH (1,1) seleccionado es apropiado en relación al orden del modelo. 
 
 Se estima a continuación un modelo EGARCH(1,1). La ecuación resultante es:
 
@@ -3653,15 +3673,15 @@ dm_arch_egarch<-dm.test(error3,error1,h=1,power=1)
 \newpage
 ## Redes neuronales-NNETAR:
 
-A continuación se modela la serie de precios de cierre de Ethereum ETH/USD con una red neuronal de una capa oculta y para la realización de los pronósticos se realiza la forma iterativa de manera de pronosticar un paso adelante y luego tomar ese pronóstico como un nuevo dato histórico y avanzar sucesivamente.
+A continuación se modela la serie de precios de cierre de Ether ETH/USD con una red neuronal de una capa oculta y para la realización de los pronósticos se realiza la forma iterativa de manera de pronosticar un paso adelante y luego tomar ese pronóstico como un nuevo dato histórico y avanzar sucesivamente.
 
-El trabajo con redes neuronales permiten identificar estructuras no lineales en el comportamiento de la serie. Se utilizará la función NNETAR del paquete de R Forecast que realiza modelos con una capa oculta de redes neuronales de alimentación y paso hacía adelante (FNN) en donde cada uno de los nodos recibe entradas de las capas anteriores. No se produce la realimentación entre capas que se da en los modelos RNN, o de redes neuronales recursivas.  
+El trabajo con redes neuronales permiten identificar estructuras no lineales en el comportamiento de la serie. Se utilizará la función NNETAR del paquete Forecast de R  que realiza modelos con una capa oculta de redes neuronales de alimentación y paso hacía adelante (FNN) en donde cada uno de los nodos recibe entradas de las capas anteriores. No se produce la realimentación entre capas que se da en los modelos RNN, o de redes neuronales recursivas.  
 
 Se utiliza la notación NNETAR(p,k) donde p es el número de rezagos que se utilizan como entradas y k es el número de nodos ocultos que están presentes (cantidad de neuronas en la capa oculta).
 
 Para el trabajo con NNETAR se estableció el mismo esquema de validación cruzada que en el resto de los modelos para la media. Además para la evaluación se separó un conjunto de entrenamiento y de testeo. Al requerir para la modelización la mayor cantidad de datos disponibles se elige dividir el conjunto de entrenamiento final con todos los datos disponibles desde el 01-01-2017 al 30-12-2021 y utilizar los días del mes de enero de 2022 como conjunto de testeo para los distintos horizontes de pronóstico. 
 
-En las figuras a continuación se muestra el esquema de valización cruzada propuesto y la división de entrenamiento y testeo para el horizonte de 30 días (los demás esquemas de validación cruzada y entrenamiento/testeo se incluyen en el Apéndice).
+En las figuras a continuación se muestra el esquema de validación cruzada propuesto y la división de entrenamiento y testeo para el horizonte de 30 días (los demás esquemas de validación cruzada y entrenamiento/testeo se incluyen en el Apéndice).
 
 
 ```{r,include=F,eval=F, echo=FALSE,message=FALSE,warning=FALSE}
@@ -3885,13 +3905,13 @@ g39
 
 Al ser un proceso de cálculo estocástico se fija una semilla para los números aleatorios a fin de poder reproducir los resultados. 
 
-Otro de los aspectos importantes en el desarrollo de pronósticos con NNETAR es la correcta hiper-parametrización del modelo. En este caso se desarrollan grillas de selección de hiperparámetros para poder ajustar las configuraciones en relación a las métricas de error seleccionadas (RMSE, MAE y MAPE%).
+Otro de los aspectos importantes en el desarrollo de pronósticos con NNETAR es la correcta hiper-parametrización del modelo. En este caso se desarrollan grillas de selección de hiperparámetros para ajustar las configuraciones en relación a las métricas de error seleccionadas (RMSE, MAE y MAPE%).
 
 Los hiper-parámetros a configurar en la red son los siguiente:
 
 Modo: "regresión". Este hiper-parámetro es fijo y no puede ser alterado.
 
-Período de estacionalidad: En el caso del presente trabajo como ya se indicó en el análsis exploratorio no se encontraron evidencias de comportamiento estacional, con lo que se descarta modelar este hiperparámetro.
+Período de estacionalidad: En el caso del presente trabajo como ya se indicó en el análsis exploratorio no se encontraron evidencias de comportamiento estacional, en el modelado con ARIMA se encontró comportamiento estacional en el séptimo rezago y en este caso se descarta modelar este hiperparámetro.
 
 Coeficiente autorregresivo no estacionario: es el orden p del modelo.
 
@@ -4701,7 +4721,7 @@ knitr::kable(resultados_nnetar_5_dias$model_accuracy %>% select(-.model_id,-mase
 \newpage
 ## Redes neuronales recursivas-LSTM: 
 
-Para aplicar la técnica LSTM es necesario evaluar que la serie original presente niveles de autocorrelación suficientes como para generar las secuencias de predicciones. 
+Para aplicar la técnica LSTM es necesario evaluar que la serie original presente niveles de autocorrelación suficientes como para generar las secuencias de predicciones. Como previamente se mostró en el caso de la serie de precios de cierre este comportamiento es visible. 
 
 ```{r,eval=F,include=FALSE}
 prueba
@@ -4938,7 +4958,7 @@ Se decide realizar el pronóstico de la serie de tiempo con los siguientes utili
 
 Se re entrena el modelo con los parámetros seleccionados a lo largo del total de los datos y se realizan los pronósticos en los horizontes definidos. Para ello se realizaron 100 corridas del modelo calibrado según la especificación obtenida en cada modelo con todos los datos disponibles para el pronóstico de la serie. 
 
-Los gráficos a de pronósticos que se presentan incluyen la representación de la serie a lo largo del período 2021-enero 2022 para una mejor visualización de la información.
+Los gráficos de pronósticos que se presentan incluyen la representación de la serie a lo largo del período 2021-enero 2022 para una mejor visualización de la información.
 
 ```{r,grafCuanti52, fig.height=5, fig.width=8, fig.cap="Pronóstico con LSTM ETH/USD (30 días-100 corridas). Fuente: Elaboración propia.",fig.scap="Pronóstico con LSTM ETH/USD (30 días-100 corridas).",echo=F,message=FALSE}
 
@@ -6315,22 +6335,22 @@ cacau_5$AccuracyTable
 
 \newpage
 
-# 7-Resultados y discusión:
+# Capítulo 5 - Conclusiones y discusión
 
-Una vez evaluados los distintos componentes del marco empírico se procede a agrupar los resultados y a presentar los mismos de manera ordenada para poder realizar una evaluación de los métodos empleados. 
+Una vez evaluados los distintos componentes de la metodología se procede a agrupar los resultados y a presentar los mismos de manera ordenada para poder realizar una evaluación de los métodos empleados. 
 
-Como se menciona a lo largo del marco teórico y el marco empírico, para la evaluación de cada modelo de pronóstico se utilizan métricas relativas al error como el error cuadrático medio, el error absoluto medio y el error medio porcentual. A ello se suman los criterios de información y las pruebas de Mincer Zarnowitz en el caso de los modelos paramétricos. 
+Como se menciona a lo largo de la metodología y resultados, para la evaluación de cada modelo de pronóstico se utilizan métricas relativas al error como el error cuadrático medio, el error absoluto medio y el error medio porcentual. A ello se suman los criterios de información y las pruebas de Mincer Zarnowitz en el caso de los modelos paramétricos. 
 
-La naturaleza de los modelos empleados permite una comparación objetiva entre técnicas paramétricas y no paramétricas en el caso de la predicción de los precios de cierre de ETH a través de las métricas en el horizonte de predicción planteado. Además de las métricas calculadas, es necesario mencionar características particulares de cada método a fin de dar mayor información sobre las pruebas empíricas con las series de precios de cierre y retornos de ETH/USD.   
+La naturaleza de los modelos empleados permite una comparación objetiva entre técnicas paramétricas y no paramétricas en el caso de la predicción de los precios de cierre de ETH/USD a través de las métricas en el horizonte de predicción planteado. Además de las métricas calculadas, es necesario mencionar características particulares de cada método a fin de dar mayor información sobre las pruebas empíricas con las series de precios de cierre y retornos de ETH/USD.   
 
 Por esto se decide realizar la evaluación entre los modelos paramétricos, luego la evaluación de las técnicas no paramétricas para predicción del precio de cierre mencionando las características relevantes de cada uno y finalmente comparar las métricas propuestas.
 
-En el caso del estudio de la volatilidad se presentan los resultados, particularidades y comentarios al final de este capítulo. 
+En el caso del estudio de la volatilidad se presentan los resultados resumidos, particularidades y comentarios al final de este capítulo. 
 
 \newpage
 ## Modelos Paramétricos: 
 
-Se presentan a continuación las métricas obtenidas para los modelos ETS, ARIMA y ARFIMA utilizados para la predicción del precio de cierre de ETH/USD. Se presentan las métricas obtenidas tanto en los horizontes objetivos del trabajo (5 días, 15 días y 30 días) tanto como durante la validación cruzada de los modelos.
+Se presentan a continuación las métricas obtenidas para los modelos ETS, ARIMA (SARIMA) y ARFIMA utilizados para la predicción del precio de cierre de ETH/USD. Se presentan las métricas obtenidas tanto en los horizontes objetivos del trabajo (5 días, 15 días y 30 días) tanto como durante la validación cruzada de los modelos.
 
 En el cuadro a continuación se presentan las métricas para los pronósticos a 5,15 y 30 días en el mes de enero de 2022.
 
@@ -6345,7 +6365,7 @@ knitr::kable(ra,
 
 ```
 
-En base al criterio de las métricas (RMSE, MAE y MAPE) en los horizontes previstos para el mes de enero de 2022 el modelo ARFIMA resulta más preciso en 15 y 30 días pero en el pronóstico de 5 días el modelo ETS resulta más preciso.
+En base al criterio de las métricas (RMSE, MAE y MAPE) en los horizontes previstos para el mes de enero de 2022 el modelo ARFIMA resulta más preciso en 15 y 30 días pero en el pronóstico de 5 días el modelo ETS tiene mejor performance.
 
 Al observar la tabla de métricas promedio de los modelos durante los distintos intervalos definidos para aplicar la validación cruzada se obtienen los resultados que se muestran en la tabla: 
 
@@ -6373,15 +6393,15 @@ En el análisis de las métricas obtenidas de los conjuntos de validación cruza
 
 En relación a los criterios de información AICc, AIC y BIC el método con los menores valores es el ARIMA con valores de AIC=5324, AICc=5224 y BIC=5291. ARFIMA con valores de los criterios de información AICc=21064.43, AIC=21064.63 y BIC=21103.20. ETS presenta valores de AICc=24683.53, AIC=24683.60.
 
-Al realizar los tests de Diebold-Mariano para comparar de a pares la precisión de los métodos no se observan diferencias significativas a un nivel $\alpha=0.05$ para las comparaciones realizadas en ninguno de los horizontes de pronóstico.
+Al realizar los tests de Diebold-Mariano para comparar de a pares la precisión de los métodos no se observan diferencias significativas a un nivel $\alpha=0.05$ para las comparaciones realizadas en ninguno de los horizontes de pronóstico, con lo cual se concluye que no se detectan diferencias significativas en la precisión de pronósticos en base a este test.
 
-Por otro lado, el test de Mincer-Zarnowsky evaluado en cada uno de los métodos entre los valores predichos (valores medios condicionados) y los actuales (valores reales de la serie temporal) para cada uno de los horizontes de pronóstico no presenta resultados significativos con un nivel $alpha=0.05$ en ningún caso planteando como intercepto el valor original de la serie en el cierre de cotización de 01/01/2022.
+Por otro lado, el test de Mincer-Zarnowsky evaluado en cada uno de los métodos entre los valores predichos (valores medios condicionados) y los actuales (valores reales de la serie temporal) para cada uno de los horizontes de pronóstico no presenta resultados significativos con un nivel $alpha=0.05$ en ningún caso planteando como intercepto el valor original de la serie en el cierre de cotización de 01/01/2022 con lo que se concluye que los pronósticos son insesgados. 
 
 En relación a los residuos de los modelos el principal aspecto a destacar es la leptocurtosis de los mismos. El modelo ARFIMA además presenta leve autocorrelación en los residuos. Se presenta una cuestión frecuente en el análisis de series financieras como la leptocurtosis en los residuos de los modelos. 
 
 ## Modelos no paramétricos utilizados para predicción de precio de cierre:
 
-En relación a los modelos no paramétricos la comparación sería entre NNETAR y LSTM. En ambos casos se desarrolla una calibración con configuración de los hiperparámetros de dos rondas a lo largo de un conjunto de entrenamiento y testeo con validación cruzada. Se registran las métricas tanto en los horizontes objetivo del trabajo (enero, 2022) como en la etapa de validación cruzada. 
+En relación a los modelos no paramétricos la comparación se realiza entre NNETAR y LSTM. En ambos casos se desarrolla una calibración con configuración de los hiperparámetros de dos rondas a lo largo de un conjunto de entrenamiento y testeo con validación cruzada. Se registran las métricas tanto en los horizontes objetivo del trabajo (enero, 2022) como en la etapa de validación cruzada. 
 
 A continuación se presentan las métricas (en los valores medios) observadas para los dos métodos.
 
@@ -6400,7 +6420,7 @@ En relación a las métricas obtenidas se observa que NNETAR tuvo mejor performa
 
 Un aspecto particular en NNETAR es la utilización de semillas aleatorias para establecer el estado inicial de la red. La utilización de diferentes semillas genera pronósticos distintos para los mismos hiper parámetros. Por ello se fijan las semillas para poder obtener los mismos valores en sucesivas corridas.
 
-En relación a LSTM se realizan 100 corridas del modelo y se promedian los resultados como se menciona en el marco empírico del proyecto. 
+En relación a LSTM se realizan 100 corridas del modelo y se promedian los resultados. 
 
 Otro aspecto a considerar entre estos 2 métodos es el tiempo requerido para calibrar hiper parámetros y generar los pronósticos. En el caso de NNETAR el tiempo necesario para la calibración en el esquema de validación cruzada para cada horizonte es de 6 horas con una computadora personal (equipo AMD Ryzen 5 3400G con procesador gráfico Radeon Vega 3.70 GHz y 16 GB de memoria RAM) y aproximadamente 15 minutos para la calibración final y el pronóstico con los hiper parámetros ya configurados. En el caso de LSTM cada entrenamiento de la serie para cada una de las configuraciones de la grilla de hiperparámetros toma un tiempo aproximado de 2 horas con lo cual el tiempo total de calibración y pronóstico con LSTM ronda las 48 horas de cálculo. No se configura en el presente trabajo el procesamiento en paralelo (utilizando todos los núcleos disponibles del sistema) ni se dispone de una placa procesadora gráfica de la potencia suficiente para reducir el tiempo de las operaciones con los paquetes Keras y Tensorflow especialmente en LSTM. Este aspecto resulta importante a la hora de plantear la utilización sistemática de los métodos de pronóstico descriptos en relación con los recursos necesarios para instalar un servidor acorde o trabajar con computación en la nube.
 
@@ -6419,16 +6439,16 @@ knitr::kable(martin,digits = 4,
 
 ```
 
-En el horizonte de 5 días (desde el 01/01 al 05/01 de 2022) el método de pronóstico que presenta mejores métricas es el ETS de acuerdo a lo que se realiza en el marco empírico. Dentro de los no paramétricos el NNETAR es el más preciso. Si se considera el horizonte de 15 días (desde el 01/01 al 15/01 de 2022) el modelo ARFIMA tiene mejores métricas y el LSTM presenta mejores métricas que el NNETAR entre los no paramétricos. Para el horizonte de tiempo más largo, de 30 días (desde 01/01/2022 al 30/01/2022) los métodos no paramétricos estudiados tienen mejores métricas. 
+En el horizonte de 5 días (desde el 01/01 al 05/01 de 2022) el método de pronóstico que presenta mejores métricas es el ETS. Dentro de los no paramétricos el NNETAR es el más preciso en el horizonte de 5 días. Si se considera el horizonte de 15 días (desde el 01/01 al 15/01 de 2022) el modelo ARFIMA tiene mejores métricas y el LSTM presenta mejores métricas que el NNETAR entre los no paramétricos. Para el horizonte de tiempo más largo, de 30 días (desde 01/01/2022 al 30/01/2022) los métodos no paramétricos estudiados tienen mejores métricas. En base a estos resultados, no es posible concluir que un método performa mejor en todos los horizontes de pronóstico planteados en el presente trabajo.
 
 ## Métodos empleados para la evaluación de la volatilidad.
 
-En este punto se presentan los resultados de los modelos estudiados para el pronóstico de la volatilidad de la serie. 
+En este punto se presentan los comentarios sobre los modelos estudiados para el pronóstico de la volatilidad de la serie. 
 
-Como primera característica desarrollada tanto en el marco teórico como en las pruebas con los modelos la volatilidad se manifiesta como una variable no observable directamente. Tsay (2010) y Poon (2005), autores especializados en series de tiempo financieras entre otros, remarcan este hecho como un condicionante a la hora de la evaluación de los pronósticos por el ruido que las estimaciones de la volatilidad real presentan en los valores actuales contra los que se comparan los pronósticos. En el caso de los modelos ARCH(4),
+Como primera característica desarrollada tanto en la metodología como en las pruebas con los modelos la volatilidad se manifiesta como una variable no observable directamente. Tsay (2010) y Poon (2005), autores especializados en series de tiempo financieras entre otros, remarcan este hecho como un condicionante a la hora de la evaluación de los pronósticos por el ruido que las estimaciones de la volatilidad real presentan en los valores actuales contra los que se comparan los pronósticos. En el caso de los modelos ARCH(4),
 GARCH(1,1) y EGARCH(1,1) se trabaja con los residuales de los retornos logarítmicos al cuadrado para el modelo de la volatilidad y es por esto que se debe tener cautela en la comparación. 
 
-Una característica común desarrollada en el marco empírico es el uso de diferentes funciones de densidad condicional para las innovaciones. Se decide utilizar en los 3 modelos distribución Gaussiana. Se presentó en todos los casos residuos leptocúrticos en los modelos de varianza condicional, situación que resulta común entre series financieras de acuerdo a lo expuesto por Poon (2005).
+Una característica común desarrollada en las pruebas es el uso de diferentes funciones de densidad condicional para las innovaciones. Se decide utilizar en los 3 modelos distribución Gaussiana. Se presentó en todos los casos residuos leptocúrticos en los modelos de varianza condicional, situación que resulta común entre series financieras de acuerdo a lo expuesto por Poon (2005).
 
 En relación a los criterios de información de Akaike, Bayesiano, Shibata y Hannan-Quinn el modelo ARCH(4) resulta ser más apropiado que el GARCH(1,1) y el EGARCH(1,1) en relación al modelado de la volatilidad de la serie de retornos logarítmicos de ETH/USD. Los valores registrados de los criterios de información para los modelos se muestran en la siguiente tabla a continuación:
 
@@ -6446,7 +6466,7 @@ knitr::kable(ramon,digits = 4,
 
 En relación al test de Mincer-Zarnowitz el modelo ARCH(4) tiene una ecuación en el modelo lineal que presenta un coeficiente significativo a un nivel ($\alpha=0.05$) tanto para el intercepto como para la pendiente. GARCH(1,1) y EGARCH(1,1) no presentan un componente significativo al 0.05 para la pendiente. Los 3 modelos presentan un intercepto significativo distinto de cero, lo cual indica un sesgo en los modelos respecto a la volatilidad estimada mediante los residuos al cuadrado del modelo de medias. La pendiente significativa en el modelo ARCH tiene un valor absoluto de 0.57, un valor relativamente bajo comparado con el ideal de 1.
 
-En relación al test de Diebold-Mariano las comparaciones de a pares entre los modelos no arrojan resultados significativos a un nivel ($\alpha=0.05$) tanto para las puebas a 2 colas (un modelo con distinta capacidad predictiva que el otro) o a una cola (un modelo es superior a otro) para los pronósticos estimados fuera de la muestra con 300 observaciones disponibles y horizonte deslizante de tiempo igual a un día.
+En relación al test de Diebold-Mariano las comparaciones de a pares entre los modelos no arrojan resultados significativos a un nivel ($\alpha=0.05$) tanto para las pruebas a 2 colas (un modelo con distinta capacidad predictiva que el otro) o a una cola (un modelo es superior a otro) para los pronósticos estimados fuera de la muestra con 300 observaciones disponibles y horizonte deslizante de tiempo igual a un día.
 
 En relación a las métricas obtenidas se presenta a continuación la tabla resumen:
 
@@ -6549,26 +6569,28 @@ dm.test(error_arima_15,error_arfima_15,h=13)
 
 
 \newpage
-# 8-Futuras Investigaciones:
+# Capítulo 6 - Futuras Investigaciones
 
 El presente trabajo de tesis permite establecer potenciales investigaciones futuras que profundizan los aspectos estudiados y desarrollan nuevas oportunidades de aplicación de los pronósticos de precio de cierre y volatilidad en series de tiempo con marcada volatilidad. 
 
-En referencia a la profundización de conocimientos teóricos la principal cuestión a abordar en futuras investigaciones es el supuesto de mercado ineficiente en las criptomonedas en general. Sobre este tema en el presente trabajo se asume que el mercado presenta oportunidades en los que se dan ineficiencias que permiten no considerar a los precios de cierre como un paseo aleatorio y desarrollar modelos de pronóstico para precios de cierre. 
+En referencia a la profundización de conocimientos teóricos, la principal cuestión a abordar en futuras investigaciones es el supuesto de mercado ineficiente en las criptomonedas en general. Sobre este tema en el presente trabajo se asume que el mercado presenta oportunidades en los que se dan ineficiencias que permiten no considerar a los precios de cierre como un paseo aleatorio y desarrollar modelos de pronóstico para precios de cierre. 
 
-Otra investigación futura se basa en la extensión a múltiples variables de los modelos aplicados, principalmente como instrumento de apoyo para el armado de carteras de inversión. 
+Otra investigación futura se basa en la extensión a múltiples variables de los modelos aplicados, como por ejemplo otras criptomonedas, principalmente como instrumento de apoyo para el armado de carteras de inversión. Además podría considerarse el uso de variables externas en los modelos, como por ejemplo el fenómeno provocado por la pandemia de Covid-19 o la guerra en Ucrania, analizando el impacto de estos eventos en las predicciones.
 
-En relación a los modelos aplicados, una evolución lógica es el planteo de ensambles de modelos que permitan mejorar la performance de predicción. En este aspecto resulta muy importante contar con un marco teórico adecuado para el desarrollo. Otra posible linea de investigación es el trabajo con variables externas para captar información adicional sobre eventos puntuales que tengan incidencia sobre los precios y la volatilidad. 
+En relación a los modelos aplicados, una evolución lógica es el planteo de ensambles de modelos que permitan mejorar la performance de predicción. En este aspecto resulta muy importante contar con un marco teórico adecuado para el desarrollo. Además, una futura línea de investigación debería centrarse en los avances tecnológicos del aprendizaje profundo, como por ejemplo la aplicación de modelos XGBoost.
 
 Tomando como punto de partida este trabajo puede plantearse una aplicación académica sobre series temporales con el tipo de características de extrema volatilidad que se tratan en esta tesis, como por ejemplo un curso o presentación de soporte en alguna materia específica. 
 
-Con un sentido vinculado a la operatoria de mercado una potencial aplicación de parte del código realizado para los pronósticos tanto de precio de cierre como de volatilidad puede ser empleado en la confección de programas automáticos de compra y venta de criptomonedas, específicamente para la construcción de estrategias.
+Con un sentido vinculado a la operatoria de mercado una potencial aplicación de parte del código realizado para los pronósticos tanto de precio de cierre como de volatilidad puede ser empleado en la confección de programas automáticos de compra y venta de criptomonedas, específicamente para la construcción de estrategias y programas de negociación automática.
+
 
 
 
 
 
 \newpage
-# 9-Referencias:
+
+# Bibliografía
 
 Alizadeh, S., M.W. Brandt and F.X. Diebold (2002) Range-based estimation of stochastic
 volatility models, Journal of Finance, 57, 3, 1047–1092.
@@ -6582,7 +6604,6 @@ prices, Journal of Business, 56, 97–112.
 
 Bollen, B., and B., Inder (2002) Estimating daily volatility in financial markets utilizing
 intraday data, Journal of Empirical Finance, 9, 551–562.
-
 
 
 Bollerslev, Tim (1986). Generalized Autoregressive Conditional Heteroskedasticity. Journal of Econometrics, 31, 307-327. Disponible en: https://public.econ.duke.edu/~boller/Published_Papers/joe_86.pdf
@@ -6759,7 +6780,8 @@ Winters, P. R. (1960). Forecasting sales by exponentially weighted moving averag
 Yuanyuan Zhang , Jeffrey Chu , Stephen Chan , Brandon Chan (2019). The generalised hyperbolic distribution and its subclass in the analysis of a new era of cryptocurrencies: Ethereum and its financial risk. Elsevier.
 
 \newpage
-# 10- Apéndice:
+
+# Apéndice
 
 En esta sección se presentan los modelos aplicados y gráficas complementarias al marco empírico.
 
@@ -7187,4 +7209,12 @@ En la gráfica a continuación se presenta un ejemplo de una corrida de datos pa
 
 \begin{center}\includegraphics[width=1\textwidth]{C:\\Users\\Sebastian\\Documents\\ejemplo_corrida_lstm.png}\end{center}
 \begin{center}\text{Figura 47: Corrida LSTM para pronóstico a 30 días de ETH/USD. Fuente: Elaboración propia.}\end{center}
+
+## Github:
+
+Repositorio de la tesis en: 
+
+https://github.com/sebastianbellittieri/sebabellittieri/tree/tesis_estadistica_aplicada
+
+
 
