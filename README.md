@@ -4,7 +4,7 @@ Hi! Mi name is Sebastián Bellittieri.
 
 This repository was created in order to work with some time-series projects including my Master's Thesis in Applied Statistics (in a separate branch).
 
-I have hust added a new file presenting my solution to a Data Scientist test for Globant. It has 3 separate excersises: 
+I have just added a new file presenting my solution to a Data Scientist test for Globant. It has 3 separate excersises: 
 
 The first using NLP with Bert-topic to identify topics in abstracts showing how we can model topics from a set of academic papers from NSF Research Awards. 
 I have a sample of more than 13159 abstracts files from a variety of subjects. I did use an unsupervised model to classify these abstracts into topics.
